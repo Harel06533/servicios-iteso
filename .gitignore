@@ -4,3 +4,5 @@ node_modules/
 *.log
 *.bak
 *.tmp
+*.map
+*.css

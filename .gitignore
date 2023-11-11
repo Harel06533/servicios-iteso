@@ -1,8 +1,8 @@
 node_modules/
+globalconfig.css
 .env
 .env.local
 *.log
 *.bak
 *.tmp
 *.map
-*.css

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ITESO</title>
     <link rel="stylesheet" href="globalconfig.css" />
-    <link rel="stylesheet" href="login-styles.css" />
+    <link rel="stylesheet" href="styles/login-styles.css" />
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
   </head>
 
@@ -20,7 +20,7 @@
               <h1 class="modal-title text-center">
                 <img src="assets/iteso-logo.png" alt="iteso-logo" />
               </h1>
-              <form action="" class="mx-1">
+              <form class="mx-1">
                 <div class="form-group">
                   <input
                     required
@@ -76,14 +76,6 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
-    <script>
-      // load modal, can't exit with backdrop nor 'esc' key
-      const login = new bootstrap.Modal(document.getElementById("loginModal"), {
-        backdrop: "static",
-        keyboard: false,
-      });
-      login.show();
-    </script>
+    <script src="scripts/login_logic.js"></script>
   </body>
 </html>
-

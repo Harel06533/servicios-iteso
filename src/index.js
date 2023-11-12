@@ -10,10 +10,11 @@ const app = express();
 app.use(express.json());
 
 // use static
-app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, "../public"))); // static on public files
+app.use(express.static(path.join(__dirname, "../views"))); // static on views files (html templates)
 
 // on home, render the login
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
   res.sendFile(path.join(__dirname, "../public/login-form.html"));
 });
 

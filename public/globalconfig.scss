@@ -1,16 +1,42 @@
 /* primary configuration */
 $iteso-primary: #00395b;
-
+$iteso-primary-100: #ccd7de;
+$iteso-primary-200: #99b0bd;
+$iteso-primary-300: #66889d;
+$iteso-primary-400: #33617c;
+$iteso-primary-500: #00395b;
+$iteso-primary-600: #002e49;
+$iteso-primary-700: #002237;
+$iteso-primary-800: #001724;
+$iteso-primary-900: #000b12;
 
 /* secondary palette */
 $iteso-secondary: #0093cb;
+$iteso-secondary-100: #cce9f5;
+$iteso-secondary-200: #99d4ea;
+$iteso-secondary-300: #66bee0;
+$iteso-secondary-400: #33a9d5;
+$iteso-secondary-500: #0093cb;
+$iteso-secondary-600: #0076a2;
+$iteso-secondary-700: #00587a;
+$iteso-secondary-800: #003b51;
+$iteso-secondary-900: #001d29;
 
 /* tertiary palette */
 $iteso-tertiary: #85b200;
+$iteso-tertiary-100: #e7f0cc;
+$iteso-tertiary-200: #cee099;
+$iteso-tertiary-300: #b6d166;
+$iteso-tertiary-400: #9dc133;
+$iteso-tertiary-500: #85b200;
+$iteso-tertiary-600: #6a8e00;
+$iteso-tertiary-700: #506b00;
+$iteso-tertiary-800: #354700;
+$iteso-tertiary-900: #1b2400;
 
 /* text options */
 .text-iteso-primary {
-  color: $iteso-primary
+  color: $iteso-primary;
 }
 
 .btn-iteso-primary {
@@ -19,12 +45,11 @@ $iteso-tertiary: #85b200;
 }
 
 .text-iteso-secondary {
-  color: $iteso-secondary
+  color: $iteso-secondary;
 }
 
 .text-iteso-tertiary {
-  color: $iteso-tertiary
+  color: $iteso-tertiary;
 }
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
-

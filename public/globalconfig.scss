@@ -230,4 +230,10 @@ $iteso-tertiary-900: #1b2400;
   background-color: $iteso-tertiary-900;
 }
 
+/* custom styles */
+input::placeholder {
+  color: #000;
+  opacity: 30%;
+}
+
 @import "../node_modules/bootstrap/scss/bootstrap.scss";

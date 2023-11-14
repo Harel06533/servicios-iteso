@@ -10,10 +10,3 @@ document.querySelector("form").addEventListener("submit", (e) => {
   sessionStorage.setItem("userdata", JSON.stringify(data));
   window.location.href = "/home-container.html";
 });
-
-// show modal on load
-const loginModal = new bootstrap.Modal(document.getElementById("loginModal"), {
-  backdrop: "static",
-  keyboard: false,
-});
-loginModal.show();

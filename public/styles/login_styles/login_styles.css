@@ -1,7 +1,7 @@
 /* Some specific configurations for the login form */
 
 body {
-  background-image: url("../assets/iteso-bg.jpg");
+  background-image: url("../../assets/iteso-bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;

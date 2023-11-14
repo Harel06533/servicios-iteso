@@ -1,6 +1,30 @@
-$primary: #00365b;
-$secondary: #0093cb;
-$info: #85b200;
+/* primary configuration */
+$iteso-primary: #00395b;
+
+
+/* secondary palette */
+$iteso-secondary: #0093cb;
+
+/* tertiary palette */
+$iteso-tertiary: #85b200;
+
+/* text options */
+.text-iteso-primary {
+  color: $iteso-primary
+}
+
+.btn-iteso-primary {
+  color: #fff;
+  background-color: $iteso-primary;
+}
+
+.text-iteso-secondary {
+  color: $iteso-secondary
+}
+
+.text-iteso-tertiary {
+  color: $iteso-tertiary
+}
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 

@@ -2,7 +2,9 @@ node_modules/
 globalconfig.css
 .env
 .env.local
+.DS_Store
 *.log
 *.bak
 *.tmp
 *.map
+

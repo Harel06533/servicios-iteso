@@ -1,3 +1,7 @@
+$primary: #00395b;
+$secondary: #0093cb;
+$info: #85b200;
+
 /* primary configuration */
 $iteso-primary: #00395b;
 $iteso-primary-100: #ccd7de;
@@ -34,20 +38,17 @@ $iteso-tertiary-700: #506b00;
 $iteso-tertiary-800: #354700;
 $iteso-tertiary-900: #1b2400;
 
-/* text options */
+/* text primary */
 .text-iteso-primary {
   color: $iteso-primary;
 }
 
-.btn-iteso-primary {
-  color: #fff;
-  background-color: $iteso-primary;
-}
-
+/* text secondary  */
 .text-iteso-secondary {
   color: $iteso-secondary;
 }
 
+/* text tertiary */
 .text-iteso-tertiary {
   color: $iteso-tertiary;
 }

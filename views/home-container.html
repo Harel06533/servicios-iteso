@@ -6,11 +6,22 @@
     <link rel="stylesheet" href="/globalconfig.css" />
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
     <title>ITESO - Servicios Mi ITESO</title>
+    <style>
+      body,
+      html {
+        height: 100%;
+      }
+
+      body {
+        height: 100vh;
+        background-color: #ddd;
+      }
+    </style>
   </head>
-  <body style="height: 100vh; background-color: #ddd">
+  <body>
     <!-- main navbar -->
-    <header>
-      <nav class="navbar w-100 navbar-expand-lg bg-iteso-primary fixed p-0">
+    <header style="height: 93%">
+      <nav class="navbar w-100 navbar-expand-lg bg-iteso-primary p-0">
         <div
           class="container-fluid p-0 d-flex justify-content-between"
           style="align-items: initial"
@@ -48,7 +59,7 @@
                     />
                     <button
                       type="submit"
-                      class="btn btn-secondary rounded-end-pill"
+                      class="btn btn-iteso-secondary rounded-end-pill"
                     >
                       <span
                         class="text-white fa-solid fa-magnifying-glass"
@@ -61,6 +72,33 @@
           </div>
         </div>
       </nav>
+      <!-- sidebar -->
+      <div
+        class="d-flex flex-column bg-iteso-primary-400 h-100"
+        style="width: 20%"
+      >
+        <div class="accordion accordion-flush w-100" id="sidebarAccordion">
+          <div class="accordion-item">
+            <h2 id="accordion-header">
+              <button
+                class="accordion-button collapsed btn btn-iteso-primary"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#moneyInfo"
+                aria-expanded="false"
+                aria-controls="moneyInfo"
+              >
+                Finanzas
+              </button>
+            </h2>
+            <div id="moneyInfo" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                <strong>Item</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </header>
     <main></main>
     <footer></footer>

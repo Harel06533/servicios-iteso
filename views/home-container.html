@@ -7,6 +7,10 @@
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
     <title>ITESO - Servicios Mi ITESO</title>
     <style>
+      .accordion-button {
+        font-size: 1.1rem;
+        gap: 0.8rem;
+      }
       .accordion-button::after {
         background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
       }
@@ -75,21 +79,28 @@
           <div class="accordion-item">
             <h2 id="accordion-header">
               <button
-                class="border-bottom border-white accordion-button bg-iteso-primary-700 text-white fw-bold d-flex align-items-center justify-content-center gx-2"
+                class="border-bottom border-white accordion-button bg-iteso-primary-700 text-white fw-bold d-flex align-items-center justify-content-center"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#moneyInfo"
                 aria-expanded="false"
                 aria-controls="moneyInfo"
-                style="gap: 0.8rem; font-size: 1.1rem"
               >
                 <span class="fa-solid fa-building-columns text-white"></span>
                 Finanzas
               </button>
             </h2>
+            <!-- TODO: DO LIST ITEMS -->
             <div id="moneyInfo" class="accordion-collapse collapse">
-              <div class="accordion-body">
-                <strong>Item</strong>
+              <div class="accordion-body p-0">
+                <ul class="list-group w-100 h-100">
+                  <li class="list-group-item">
+                    <a href="#">Simulador de pagos</a>
+                  </li>
+                  <li class="list-group-item">
+                    <a href="#">Pago de colegiatura</a>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

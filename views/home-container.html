@@ -7,18 +7,12 @@
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
     <title>ITESO - Servicios Mi ITESO</title>
     <style>
-      body,
-      html {
-        height: 100%;
-      }
-
-      body {
-        height: 100vh;
-        background-color: #ddd;
+      .accordion-button::after {
+        background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
       }
     </style>
   </head>
-  <body>
+  <body style="height: 100vh; background-color: #ddd">
     <!-- main navbar -->
     <header style="height: 93%">
       <nav class="navbar w-100 navbar-expand-lg bg-iteso-primary p-0">
@@ -81,13 +75,15 @@
           <div class="accordion-item">
             <h2 id="accordion-header">
               <button
-                class="accordion-button collapsed btn btn-iteso-primary"
+                class="border-bottom border-white accordion-button bg-iteso-primary-700 text-white fw-bold d-flex align-items-center justify-content-center gx-2"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#moneyInfo"
                 aria-expanded="false"
                 aria-controls="moneyInfo"
+                style="gap: 0.8rem; font-size: 1.1rem"
               >
+                <span class="fa-solid fa-building-columns text-white"></span>
                 Finanzas
               </button>
             </h2>

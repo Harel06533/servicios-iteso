@@ -331,7 +331,7 @@
           class="w-100 bg-iteso-tertiary p-3 text-white d-flex justify-content-between align-items-center pointer"
           style="font-size: 1.3rem"
         >
-          <div class="user-info">
+          <div class="user-info" style="cursor: pointer">
             <span class="fa-solid fa-user"></span>
             <strong id="userName" style="font-size: 0.8rem"
               >Nombre Apellido</strong
@@ -344,326 +344,162 @@
 
     <main style="margin-top: 50px" class="pt-4 px-4 w-100">
       <!-- main content, here it will be rendered based on user choice -->
-      <!--
       <div class="container">
-        <h4 class="text-end me-3" style="color: #9a9a9a">Mi Perfil</h4>
-        <div class="card" style="border-radius: 2rem">
-          <div
-            id="userInfoCard"
-            class="card-body d-flex align-items-center px-5 py-4"
-            style="gap: 5rem"
-          >
-            <div class="user-pic d-flex flex-column align-items-center">
-              <img
-                src="/assets/user_placeholder.png"
-                alt="user placeholder pic"
-                class="rounded-circle"
-                style="width: 10rem"
-              />
-              <h6 class="text-uppercase mt-1" style="color: #888">
-                nombre apellido
-              </h6>
+        <h4 class="text-end me-3" style="color: #9a9a9a">
+          Pago de colegiatura
+        </h4>
+        <div class="d-flex" style="gap: 1rem">
+          <div class="card" style="border-radius: 2rem">
+            <div
+              id="billingInfoCard"
+              class="card-body d-flex align-items-center px-5 py-4"
+              style="gap: 5rem"
+            >
+              <div class="user-pic d-flex flex-column align-items-center">
+                <img
+                  src="/assets/user_placeholder.png"
+                  alt="user placeholder pic"
+                  class="rounded-circle"
+                  style="width: 10rem"
+                />
+                <h6 class="text-uppercase mt-1" style="color: #888">
+                  nombre apellido
+                </h6>
+              </div>
+              <ul class="list-group list-group-flush w-100">
+                <li
+                  id="tagNumber"
+                  class="list-group-item p-3 d-flex"
+                  style="gap: 0.6rem"
+                >
+                  <span
+                    class="fa-solid fa-tag text-iteso-secondary"
+                    style="font-size: 1.5rem"
+                  ></span>
+                  <div class="d-flex align-items-center">
+                    <strong></strong>
+                    <p class="m-0 lh-1">
+                      000000 <br />
+                      <span
+                        class="fw-bold"
+                        style="color: #888; font-size: 0.7rem"
+                        aria-label="type"
+                        >Expediente</span
+                      >
+                    </p>
+                  </div>
+                </li>
+                <li
+                  id="digit"
+                  class="list-group-item p-3 d-flex"
+                  style="gap: 0.6rem"
+                >
+                  <span
+                    class="fa-solid fa-barcode text-iteso-secondary"
+                    style="font-size: 1.5rem"
+                  ></span>
+                  <div class="d-flex align-items-center">
+                    <strong></strong>
+                    <p class="m-0 lh-1">
+                      000 <br />
+                      <span
+                        class="fw-bold"
+                        style="color: #888; font-size: 0.7rem"
+                        aria-label="type"
+                        >Dígito verificador</span
+                      >
+                    </p>
+                  </div>
+                </li>
+                <li
+                  id="schoolEmail"
+                  class="list-group-item p-3 d-flex"
+                  style="gap: 0.6rem"
+                >
+                  <span
+                    class="fa-solid fa-envelope text-iteso-secondary"
+                    style="font-size: 1.5rem"
+                  ></span>
+                  <div class="d-flex align-items-center">
+                    <strong></strong>
+                    <p class="m-0 lh-1">
+                      email@iteso.mx <br />
+                      <span
+                        class="fw-bold"
+                        style="color: #888; font-size: 0.7rem"
+                        aria-label="type"
+                        >Correo electrónico</span
+                      >
+                    </p>
+                  </div>
+                </li>
+              </ul>
             </div>
-            <ul class="list-group list-group-flush w-100">
-              <li
-                id="tagNumber"
-                class="list-group-item p-3 d-flex"
-                style="gap: 0.6rem"
-              >
-                <span
-                  class="fa-solid fa-tag text-iteso-secondary"
-                  style="font-size: 1.5rem"
-                ></span>
-                <div class="d-flex align-items-center">
-                  <strong></strong>
-                  <p class="m-0 lh-1">
-                    000000 <br />
-                    <span
-                      class="fw-bold"
-                      style="color: #888; font-size: 0.7rem"
-                      aria-label="type"
-                      >Expediente</span
+          </div>
+          <div class="card flex-grow-1" style="border-radius: 2rem">
+            <div id="totalBillingInfo" class="card-body" style="gap: 5rem">
+              <h5 class="text me-1" style="color: #9a9a9a; text-align: right">
+                Total
+              </h5>
+              <ul class="list-group list-group-flush w-100">
+                <li
+                  id="totalDomBilling"
+                  class="list-group-item p-3 d-flex justify-content-between"
+                >
+                  <div>
+                    <strong class="text-iteso-primary"
+                      >Total domiciliado</strong
                     >
-                  </p>
-                </div>
-              </li>
-              <li
-                id="digit"
-                class="list-group-item p-3 d-flex"
-                style="gap: 0.6rem"
-              >
-                <span
-                  class="fa-solid fa-barcode text-iteso-secondary"
-                  style="font-size: 1.5rem"
-                ></span>
-                <div class="d-flex align-items-center">
-                  <strong></strong>
-                  <p class="m-0 lh-1">
-                    000 <br />
-                    <span
-                      class="fw-bold"
-                      style="color: #888; font-size: 0.7rem"
-                      aria-label="type"
-                      >Dígito verificador</span
+                  </div>
+                  <span>20,118.48 </span>
+                </li>
+                <li
+                  id="notDomTotal"
+                  class="list-group-item p-3 d-flex justify-content-between"
+                >
+                  <div>
+                    <strong class="text-iteso-primary"
+                      >Total sin domiciliar</strong
                     >
-                  </p>
-                </div>
-              </li>
-              <li
-                id="schoolEmail"
-                class="list-group-item p-3 d-flex"
-                style="gap: 0.6rem"
-              >
-                <span
-                  class="fa-solid fa-envelope text-iteso-secondary"
-                  style="font-size: 1.5rem"
-                ></span>
-                <div class="d-flex align-items-center">
-                  <strong></strong>
-                  <p class="m-0 lh-1">
-                    email@iteso.mx <br />
-                    <span
-                      class="fw-bold"
-                      style="color: #888; font-size: 0.7rem"
-                      aria-label="type"
-                      >Correo electrónico</span
-                    >
-                  </p>
-                </div>
-              </li>
-            </ul>
+                  </div>
+                  <span>0.00</span>
+                </li>
+                <li
+                  id="absoluteTotal"
+                  class="list-group-item p-3 d-flex justify-content-between"
+                >
+                  <div>
+                    <strong class="text-iteso-primary">Total:</strong> 20,118.48
+                  </div>
+                  <button class="btn btn-iteso-tertiary text-white">
+                    Pagar
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-
-        important info cards 
-        <div class="d-flex" style="gap: 1rem">
-          <div class="card mt-3" style="border-radius: 2em; width: 40%">
-            <div class="card-body">
-              <h5 class="text me-1" style="color: #9a9a9a; text-align: left">
-                Datos Personales
-              </h5>
-              <ul class="list-group list-group-flush w-100">
-                <li
-                  id="personalPhone"
-                  class="list-group-item p-3 d-flex justify-content-between"
-                >
-                  <div class="modifier d-flex" style="gap: 0.6rem">
-                    <span
-                      class="fa-solid fa-phone text-iteso-secondary"
-                      style="font-size: 1.3rem"
-                    ></span>
-                    <div class="d-flex align-items-center">
-                      <strong></strong>
-                      <p class="m-0 lh-1">
-                        33-333-3333 <br />
-                        <span
-                          class="fw-bold"
-                          style="color: #888; font-size: 0.7rem"
-                          aria-label="type"
-                          >Número telefónico</span
-                        >
-                      </p>
-                    </div>
-                  </div>
-                  <span
-                    class="modify-button fa-solid fa-pen"
-                    style="font-size: 1rem; color: #888"
-                  ></span>
-                </li>
-                <li
-                  id="personalEmail"
-                  class="list-group-item p-3 d-flex justify-content-between"
-                >
-                  <div class="modifier d-flex" style="gap: 0.6rem">
-                    <span
-                      class="fa-solid fa-envelope text-iteso-secondary"
-                      style="font-size: 1.3rem"
-                    ></span>
-                    <div class="d-flex align-items-center">
-                      <strong></strong>
-                      <p class="m-0 lh-1">
-                        emailpersonal@gmail.com <br />
-                        <span
-                          class="fw-bold"
-                          style="color: #888; font-size: 0.7rem"
-                          aria-label="type"
-                          >Correo personal</span
-                        >
-                      </p>
-                    </div>
-                  </div>
-                  <span
-                    class="modify-button fa-solid fa-pen"
-                    style="font-size: 1rem; color: #888"
-                  ></span>
-                </li>
-                <li
-                  id="location"
-                  class="list-group-item p-3 d-flex justify-content-between"
-                >
-                  <div class="modifier d-flex" style="gap: 0.6rem">
-                    <span
-                      class="fa-solid fa-location-dot text-iteso-secondary"
-                      style="font-size: 1.3rem"
-                    ></span>
-                    <div class="d-flex align-items-center">
-                      <strong></strong>
-                      <p class="m-0 lh-1">
-                        Guadalajara, Jalisco, México. <br />
-                        <span
-                          class="fw-bold"
-                          style="color: #888; font-size: 0.7rem"
-                          aria-label="type"
-                          >Ubicación
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                  <span
-                    class="modify-button fa-solid fa-pen"
-                    style="font-size: 1rem; color: #888"
-                  ></span>
-                </li>
-                <li
-                  id="major"
-                  class="list-group-item p-3 d-flex justify-content-between"
-                >
-                  <div class="modifier d-flex" style="gap: 0.7rem">
-                    <span
-                      class="fa-solid fa-graduation-cap text-iteso-secondary"
-                      style="font-size: 1.3rem"
-                    ></span>
-                    <div class="d-flex align-items-center">
-                      <strong></strong>
-                      <p class="m-0 lh-1">
-                        Grad. Nombre <br />
-                        <span
-                          class="fw-bold"
-                          style="color: #888; font-size: 0.7rem"
-                          aria-label="type"
-                          >Carrera
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="card mt-3 flex-grow-1" style="border-radius: 2em">
-            <div class="card-body">
-              <h5
-                class="text-end me-1"
-                style="color: #9a9a9a; text-align: left"
-              >
-                Información Académica
-              </h5>
-              <ul class="list-group list-group-flush w-100">
-                <li
-                  id="pay"
-                  class="list-group-item p-3 d-flex justify-content-between"
-                >
-                  <div class="modifier d-flex" style="gap: 0.6rem">
-                    <span
-                      class="fa-solid fa-coins text-iteso-secondary"
-                      style="font-size: 1.3rem"
-                    ></span>
-                    <div class="d-flex align-items-center">
-                      <strong></strong>
-                      <p class="m-0 lh-1" style="color: #ffc107">
-                        Por pagar <br />
-                        <span
-                          class="fw-bold"
-                          style="color: #888; font-size: 0.7rem"
-                          aria-label="type"
-                          >Colegiatura</span
-                        >
-                      </p>
-                    </div>
-                  </div>
-                  <a href="#">Ir a colegiatura</a>
-                </li>
-                <li
-                  id="inscription"
-                  class="list-group-item p-3 d-flex justify-content-between"
-                >
-                  <div class="modifier d-flex" style="gap: 0.6rem">
-                    <span
-                      class="fa-solid fa-list-check text-iteso-secondary"
-                      style="font-size: 1.3rem"
-                    ></span>
-                    <div class="d-flex align-items-center">
-                      <strong></strong>
-                      <p class="m-0 lh-1">
-                        10 de Marzo del 2024<br />
-                        <span
-                          class="fw-bold"
-                          style="color: #888; font-size: 0.7rem"
-                          aria-label="type"
-                          >Incripción de Materias</span
-                        >
-                      </p>
-                    </div>
-                  </div>
-                  <a href="#">Ir a ficha de inscripción</a>
-                </li>
-                <li
-                  id="average"
-                  class="list-group-item p-3 d-flex justify-content-between"
-                >
-                  <div class="modifier d-flex" style="gap: 0.6rem">
-                    <span
-                      class="fa-solid fa-flag-checkered text-iteso-secondary"
-                      style="font-size: 1.3rem"
-                    ></span>
-                    <div class="d-flex align-items-center">
-                      <strong> </strong>
-                      <p class="m-0 lh-1">
-                        9.2 <br />
-                        <span
-                          class="fw-bold"
-                          style="color: #888; font-size: 0.7rem"
-                          aria-label="type"
-                          >Promedio escolar
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                  <a href="#">Ir a historia académica</a>
-                </li>
-                <li
-                  id="barprogres"
-                  class="progress-bar p-3 d-flex justify-content-between mt-4"
-                >
-                  <div
-                    class="progress"
-                    role="progressbar"
-                    aria-label=".."
-                    aria-valuenow="25"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                    style="margin-top: 5px"
-                  >
-                    <div
-                      class="progress-bar bg-iteso-secondary"
-                      style="width: 35%"
-                    >
-                      35%
-                    </div>
-                  </div>
-                  <span
-                    class="fw-bold"
-                    style="color: #888; font-size: 0.7rem"
-                    aria-label="type"
-                    >Creditos aprobados
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
+        <!--billing-->
+        <div class="mt-4">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" class="bg-iteso-primary text-white p-3">
+                  Adeudos consultados desde el 13 nov 2023
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Fecha</td>
+                <td></td>
+                <td></td>
+                <td>Importe</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-      -->
     </main>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -674,8 +510,9 @@
       src="https://kit.fontawesome.com/e0497758cb.js"
       crossorigin="anonymous"
     ></script>
-    <script src="/scripts/user_profile/components.js"></script>
+    <script src="/scripts/components.js"></script>
     <script src="/scripts/user_profile/render_user_profile.js"></script>
+    <script src="/scripts/billing/render_billing.js"></script>
     <script src="/scripts/render_controller.js"></script>
   </body>
 </html>

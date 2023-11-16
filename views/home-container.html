@@ -479,25 +479,47 @@
             </div>
           </div>
         </div>
-        <!--billing-->
-        <div class="mt-4">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col" class="bg-iteso-primary text-white p-3">
-                  Adeudos consultados desde el 13 nov 2023
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Fecha</td>
-                <td></td>
-                <td></td>
-                <td>Importe</td>
-              </tr>
-            </tbody>
-          </table>
+        <!--billing accordion -->
+        <div id="billingAccordion" class="accordion accordion-flush w-100 mt-4">
+          <div class="accordion-item">
+            <h2 id="accordion-header" class="mb-0">
+              <button
+                class="collapsed border-bottom border-white accordion-button bg-iteso-primary-600 text-white fw-bold d-flex align-items-center justify-content-center rounded-1"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#billingInfo"
+                aria-expanded="false"
+                aria-controls="billingInfo"
+              >
+                <span class="fa-solid fa-building-columns text-white"></span>
+                Adeudos consultados al 16 de nov de 2023
+              </button>
+            </h2>
+            <div
+              id="billingInfo"
+              class="accordion-collapse collapse"
+              data-bs-parent="billingAccordion"
+            >
+              <div class="accordion-body p-2">
+                <div
+                  class="bill-header w-100 d-flex justify-content-between bg-secondary-100 align-items-center"
+                >
+                  <p style="font-size: 1.2rem">
+                    <strong class="text-iteso-primary-400"
+                      >Fecha de pago:</strong
+                    >
+                    <span>1 de dic de 2023</span>
+                  </p>
+                  <p
+                    class="single-debt-price text-iteso-primary-400"
+                    style="font-size: 1.2rem"
+                  >
+                    20,118,48
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>

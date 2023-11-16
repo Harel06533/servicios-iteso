@@ -61,6 +61,7 @@ function createListGroup(dataObjects, customItemsClasses) {
   return list;
 }
 
+// creates a progress bar
 function createProgressBar(percentage) {
   const progressBar = document.createElement("div");
   progressBar.classList.add("progress", "mt-4");
@@ -76,4 +77,37 @@ function createProgressBar(percentage) {
                     </div>
 `;
   return progressBar;
+}
+
+// creates a functional accordion
+function createAccordion(accId, collapseId, contentElement) {
+  const accordion = document.createElement("div");
+  accordion.id = accId;
+  accordion.classList.add("accordion", "accordion-flush", "w-100");
+  accordion.innerHTML = `
+<div class="accordion-item">
+  <h2 id="accordion-header" class="mb-0">
+    <button
+      class="collapsed border-bottom border-white accordion-button bg-iteso-primary-600 text-white fw-bold d-flex align-items-center justify-content-center rounded-1"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#${collapseId}"
+      aria-expanded="false"
+      aria-controls="${collapseId}"
+      >
+      <span class="fa-solid fa-building-columns text-white"></span>
+      Adeudos consultados al 16 de nov de 2023
+    </button>
+  </h2>
+  <div
+    id="${collapseId}"
+    class="accordion-collapse collapse"
+    data-bs-parent="${accId}"
+  >
+  <div class="accordion-body p-2"></div>
+  </div>
+</div>
+`;
+  accordion.querySelector(".accordion-body").appendChild(contentElement);
+  return accordion;
 }

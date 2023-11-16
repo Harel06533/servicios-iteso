@@ -21,7 +21,7 @@ const userAccess = document
 
 // to select a section
 const avaliableSections = {
-  toSchoolBill: (data) => testRender(data),
+  toSchoolBill: () => createBillingSection(),
   toRegisterInfo: (data) => testRender(data),
   toAcademicHistory: (data) => testRender(data),
 };
@@ -43,10 +43,11 @@ navButtons.forEach((b) => {
     e.preventDefault();
     const id = b.id;
     if (avaliableSections[id]) {
-      avaliableSections[id](id);
+      const rendered = avaliableSections[id]();
+      renderSection(rendered);
     }
   });
 });
 
 // render user profile by default
-//renderSection(createUserProfile());
+renderSection(createUserProfile());

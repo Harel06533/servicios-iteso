@@ -9,11 +9,11 @@ function testRender(id) {
 }
 
 // variables
-const main = document.querySelector("main");
+const content = document.querySelector(".content");
 const navButtons = Array.from(
   document
     .getElementById("sidebarAccordion")
-    .querySelectorAll(".btn-iteso-primary-100"),
+    .querySelectorAll(".btn-iteso-primary-100")
 );
 const userAccess = document
   .getElementById("user-menu")
@@ -27,8 +27,8 @@ const avaliableSections = {
 };
 // function to render section
 function renderSection(section) {
-  main.innerHTML = "";
-  main.appendChild(section);
+  content.innerHTML = "";
+  content.appendChild(section);
 }
 
 // when user access is clicked, renders userProfile

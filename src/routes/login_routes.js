@@ -1,12 +1,11 @@
 "use strict";
 const router = require("express").Router();
-const path = require("path");
 const dotenv = require("dotenv"); // for managing enviroment variables
 const bcrypt = require("bcrypt"); // for encrypting passwords
 dotenv.config();
 const mongoose = require("mongoose");
 const userSchema = require("../../configs/dbconfig");
-const UserModel = mongoose.model("users", userSchema);
+const UserModel = mongoose.model("users", userSchema); // this is just for creations purposes
 const User = require("../controllers/User");
 
 // encrypt password
@@ -15,14 +14,18 @@ async function encrypt(password) {
   return encrypted;
 }
 
-// send login form
-router.get("/", (_, res) => {
-  console.log(dataBaseUrl);
-  res.sendFile(path.join(__dirname, "../../public/login-form.html"));
+// on post data - if the user exists then redirects to home
+router.post("/", async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const doc = await UserModel.findOne({ studentEmail: email });
+    const isPassword = await bcrypt.compare(password, doc.password);
+    if (!isPassword) throw new Error("Password is not correct");
+    else res.status(200).send("User found");
+  } catch (e) {
+    res.status(404).send("User was not found");
+  }
 });
-
-// TODO: setting a login auth
-router.post("/user", (req, res) => {});
 
 // register a user (This should not be used in the client end as user registration is not done on the website) this is for testing only
 router.post("/register", async (req, res) => {

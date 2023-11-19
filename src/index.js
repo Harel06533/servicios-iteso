@@ -4,9 +4,22 @@ const cors = require("cors");
 const dotenv = require("dotenv"); // for managing enviroment variables
 const router = require("./router");
 dotenv.config();
-
+const mongoose = require("mongoose");
 const PORT = process.env["PORT"] || 3000;
+const USERS_DB_URL = process.env["USERS_DB"] || "";
 const app = express();
+
+// database setup
+const connection = mongoose.connection;
+connection.on("connecting", () => {
+  console.log("connecting to the database");
+});
+
+connection.on("connected", () => {
+  console.log("Server has connected succesfully to the database");
+  console.log(connection.readyState);
+});
+mongoose.connect(USERS_DB_URL);
 
 // cors accepts every http method
 app.use(

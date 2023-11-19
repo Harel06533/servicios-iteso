@@ -15,6 +15,10 @@
       .accordion-button::after {
         background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
       }
+
+      main {
+        height: calc(100vh - 59px); /* this will keep the height constant */
+      }
     </style>
   </head>
 
@@ -22,7 +26,10 @@
     <!-- main navbar -->
     <header>
       <!-- This is bugged, left to 93% for firefox display-->
-      <nav class="navbar w-100 navbar-expand-lg bg-iteso-primary p-0">
+      <nav
+        class="navbar w-100 navbar-expand-lg bg-iteso-primary p-0"
+        style="height: 59px"
+      >
         <div
           class="container-fluid p-0 d-flex justify-content-between"
           style="align-items: initial"
@@ -75,7 +82,7 @@
       </nav>
     </header>
     <!-- main content -->
-    <main class="h-100 d-flex">
+    <main class="d-flex">
       <div class="sidebar h-100">
         <!-- sidebar -->
         <div

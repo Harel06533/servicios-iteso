@@ -1,14 +1,15 @@
 // this file handles routing to different and base routes
 "use strict";
-const router = require("express").Router();
+const baseRouter = require("express").Router();
+const loginRouter = require("./routes/login_routes");
 const path = require("path");
 
-function sendLogin(_, res) {
+// base router
+baseRouter.get("/", (_, res) => {
   res.sendFile(path.join(__dirname, "../public/login-form.html"));
-}
+});
 
-// base route, sends login page
-router.get("/", (_, res) => sendLogin(_, res));
-router.get("/login", (_, res) => sendLogin(_, res));
+// send login and base uri to login router
+baseRouter.use("/login", loginRouter);
 
-module.exports = router;
+module.exports = baseRouter;

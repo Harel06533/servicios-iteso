@@ -1,8 +1,27 @@
 "use strict";
-document.querySelector("form").addEventListener("submit", (e) => {
+
+const baseUrl = "http://localhost:3000/password";
+
+document.querySelector("form").addEventListener("submit", async (e) => {
   e.preventDefault();
-  const username = document.getElementById("username").value;
-  const email = document.getElementById("password").value;
-  const data = [email, password];
-  window.location.href = "/password-reset.html";
+  const studentEmail = document.getElementById("username").value + "@iteso.mx";
+  try {
+    const options = {
+      method: "POST",
+      body: JSON.stringify({ studentEmail }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const req = await fetch(baseUrl, options);
+    if (req.status !== 200) {
+      throw new Error("User was not found");
+    } else {
+      window.location.href = `/password?email=${encodeURIComponent(
+        studentEmail,
+      )}`;
+    }
+  } catch (e) {
+    alert("Error: " + e);
+  }
 });

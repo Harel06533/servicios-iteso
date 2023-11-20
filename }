@@ -1,0 +1,8 @@
+"use strict";
+
+const baseUrl = "http://localhost:3000/password";
+
+document.querySelector("form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const studentEmail = document.getElementById("username") + "@iteso.mx";
+});

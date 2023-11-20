@@ -1,13 +1,11 @@
 "use strict";
 
-const router = require("express").Router();
-const dotenv = require("dotenv"); // for managing enviroment variables
-const bcrypt = require("bcrypt"); // for encrypting passwords
-const mongoose = require("mongoose");
-const userSchema = require("../../configs/dbconfig");
-const UserModel = mongoose.model("users", userSchema); // this is just for creations purposes
-const path = require("path");
-dotenv.config();
+import { Router } from "express";
+import bcrypt from "bcrypt";
+import UserModel from "../../configs/dbconfig";
+import path from "path";
+
+const router = Router();
 
 // middleware for ensuring that email exists (lame attempt of auth af)
 router.use("/", (req, res, next) => {

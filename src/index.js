@@ -1,10 +1,11 @@
-const express = require("express");
-const path = require("path");
-const cors = require("cors");
-const dotenv = require("dotenv"); // for managing enviroment variables
-const router = require("./router");
+"use strict";
+import express from "express";
+import path from "path";
+import cors from "cors";
+import dotenv from "dotenv";
+import router from "./router";
+import mongoose from "mongoose";
 dotenv.config();
-const mongoose = require("mongoose");
 const PORT = process.env["PORT"] || 3000;
 const USERS_DB_URL = process.env["USERS_DB"] || "";
 const app = express();
@@ -25,7 +26,7 @@ mongoose.connect(USERS_DB_URL);
 app.use(
   cors({
     methods: ["GET", "PUT", "POST", "DELETE", "PATCH", "UPDATE"],
-  })
+  }),
 );
 
 // only recieves json on the body

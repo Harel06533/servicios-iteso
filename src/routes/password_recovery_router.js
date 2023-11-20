@@ -1,13 +1,10 @@
 // password recovery routes
 "use strict";
-const router = require("express").Router();
-const dotenv = require("dotenv"); // for managing enviroment variables
-const mongoose = require("mongoose");
-const userSchema = require("../../configs/dbconfig");
-const UserModel = mongoose.model("users", userSchema); // this is just for creations purposes
+import { Router } from "express";
+import UserModel from "../../configs/dbconfig";
+import path from "path";
 
-const path = require("path");
-dotenv.config();
+const router = Router();
 
 // sends password recovery modal (this is not safe)
 router.get("/", (_, res) => {
@@ -27,4 +24,4 @@ router.post("/", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

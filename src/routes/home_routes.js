@@ -1,15 +1,18 @@
+// handles routing on home
 "use strict";
-const router = require("express").Router();
-const dotenv = require("dotenv"); // for managing enviroment variables
+import { Router } from "express";
+import dotenv from "dotenv";
+import UserModel from "../../configs/dbconfig";
+import mongoose from "mongoose";
+import path from "path";
+import User from "../controllers/User";
 dotenv.config();
-const mongoose = require("mongoose");
-const userSchema = require("../../configs/dbconfig");
-const path = require("path");
-const User = require("../controllers/User");
+
+const router = Router();
 
 // on base, render home page (currently there is no auth, but the idea is to have one)
 router.get("/", (_, res) => {
   res.sendFile(path.join(__dirname, "../../views/home-container.html"));
 });
 
-module.exports = router;
+export default router;

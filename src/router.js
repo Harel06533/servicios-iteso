@@ -1,13 +1,14 @@
 // this file handles routing to different and base routes
 "use strict";
-const baseRouter = require("express").Router();
+import { Router } from "express";
+import path from "path";
 
 // routes
-const loginRouter = require("./routes/login_routes");
-const passRecoveryRouter = require("./routes/password_recovery_router");
-const passResetRouter = require("./routes/password_reset_router");
-const homeRouter = require("./routes/home_routes");
-const path = require("path");
+import loginRouter from "./routes/login_routes";
+import passRecoveryRouter from "./routes/password_recovery_router";
+import passResetRouter from "./routes/password_reset_router";
+import homeRouter from "./routes/home_routes";
+const baseRouter = Router();
 
 // base router --> sends login page
 baseRouter.get("/", (_, res) => {
@@ -20,4 +21,4 @@ baseRouter.use("/password", passRecoveryRouter); // on password recovery, route
 baseRouter.use("/passres", passResetRouter); // on password reset, route
 baseRouter.use("/home", homeRouter);
 
-module.exports = baseRouter;
+export default baseRouter;

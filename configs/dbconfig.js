@@ -1,8 +1,8 @@
 "use strict";
-const { Schema } = require("mongoose");
+import mongoose from "mongoose";
 
 // userSchema configuration
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
   firstNames: [
     {
       required: true,
@@ -47,4 +47,5 @@ const userSchema = new Schema({
   },
 });
 
-module.exports = userSchema;
+const UserModel = mongoose.model("users", userSchema);
+export default UserModel;

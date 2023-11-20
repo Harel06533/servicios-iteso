@@ -1,12 +1,10 @@
 "use strict";
-const router = require("express").Router();
-const dotenv = require("dotenv"); // for managing enviroment variables
-const bcrypt = require("bcrypt"); // for encrypting passwords
-dotenv.config();
-const mongoose = require("mongoose");
-const userSchema = require("../../configs/dbconfig");
-const UserModel = mongoose.model("users", userSchema); // this is just for creations purposes
-const User = require("../controllers/User");
+import { Router } from "express";
+import bcrypt from "bcrypt";
+import UserModel from "../../configs/dbconfig";
+import User from "../controllers/User";
+
+const router = Router();
 
 // encrypt password
 async function encrypt(password) {
@@ -51,4 +49,4 @@ router.post("/register", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

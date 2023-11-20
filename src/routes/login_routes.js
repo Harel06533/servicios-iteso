@@ -37,7 +37,7 @@ router.post("/register", async (req, res) => {
       lastNames,
       personalEmail,
       bachelor,
-      semester
+      semester,
     );
     const userJson = newUser.toJSON();
     userJson["password"] = await encrypt(password);
@@ -45,7 +45,6 @@ router.post("/register", async (req, res) => {
     await modeled.save();
     res.status(201).send("User created");
   } catch (e) {
-    console.log(e);
     res
       .status(403)
       .send("Error on creating user: " + e.errorMessage || e.message);

@@ -1,7 +1,8 @@
-// all the logic done in the login form
 "use strict";
 
-// create danger alert
+const baseUrl = "http://localhost:3000/password";
+
+// alert for displaying error
 function createDangerAlert(error) {
   const div = document.createElement("div");
   div.classList.add(
@@ -25,29 +26,31 @@ function createDangerAlert(error) {
   return div;
 }
 
-// on form submitted
+// on form submit
 document.querySelector("form").addEventListener("submit", async (e) => {
   e.preventDefault();
-  const email = document.getElementById("username").value + "@iteso.mx";
-  const password = document.getElementById("password").value;
+  const studentEmail = document.getElementById("username").value + "@iteso.mx";
   try {
-    const postMethod = {
+    const options = {
       method: "POST",
+      body: JSON.stringify({ studentEmail }),
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, password }),
     };
-    const res = await fetch("http://localhost:3000/login", postMethod);
-    if (res.status !== 200) throw new Error("Not Found");
-    else window.location.href = "/home";
+    const req = await fetch(baseUrl, options);
+    if (req.status !== 200) {
+      throw new Error("Not Found");
+    } else {
+      window.location.href = `/passres?email=${encodeURIComponent(
+        studentEmail,
+      )}`;
+    }
   } catch (e) {
     if (e.message === "Not Found") {
       let alert = document.querySelector(".alert");
       if (!alert) {
-        alert = createDangerAlert(
-          "El usuario o la contraseña que ingresaste es incorrecto",
-        );
+        alert = createDangerAlert("El usario que ingresaste es incorrecto");
         document
           .querySelector(".modal")
           .insertAdjacentElement("afterbegin", alert);

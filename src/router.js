@@ -4,7 +4,9 @@ const baseRouter = require("express").Router();
 
 // routes
 const loginRouter = require("./routes/login_routes");
-const passRouter = require("./routes/pass_route");
+const passRecoveryRouter = require("./routes/password_recovery_router");
+const passResetRouter = require("./routes/password_reset_router");
+const homeRouter = require("./routes/home_routes");
 const path = require("path");
 
 // base router --> sends login page
@@ -12,10 +14,10 @@ baseRouter.get("/", (_, res) => {
   res.sendFile(path.join(__dirname, "../public/login-form.html"));
 });
 
-// send login uri's to login router
-baseRouter.use("/login", loginRouter);
-
-// send pass recovery requests to passRouter
-baseRouter.use("/password", passRouter);
+// login routes
+baseRouter.use("/login", loginRouter); // on login, route to loginRouter
+baseRouter.use("/password", passRecoveryRouter); // on password recovery, route
+baseRouter.use("/passres", passResetRouter); // on password reset, route
+baseRouter.use("/home", homeRouter);
 
 module.exports = baseRouter;

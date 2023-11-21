@@ -2,9 +2,9 @@
 "use strict";
 import { Router } from "express";
 import dotenv from "dotenv";
+import User from "../controllers/user";
 import mongoose from "mongoose";
 import path from "path";
-import User from "../controllers/User";
 dotenv.config();
 
 const router = Router();

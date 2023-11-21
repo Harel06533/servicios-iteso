@@ -82,6 +82,20 @@ const userSchema = new Schema({
     required: true,
     type: Number,
   },
+
+  // debts [{ "reason": 00 -- amount }]
+  debts: [
+    {
+      reason: {
+        required: true,
+        type: String,
+      },
+      amount: {
+        required: true,
+        type: Number,
+      },
+    },
+  ],
 });
 
 const UserModel = model("users", userSchema);

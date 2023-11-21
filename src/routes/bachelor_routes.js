@@ -1,16 +1,18 @@
 "use strict";
 import BachelorModel from "../models/bachelorModel";
 import { Router } from "express";
+import Bachelor from "../controllers/bachelor";
 
 const router = Router();
+
 router.get("/", async (req, res) => {
   try {
-    const semester = Number(req.query);
-    const doc = await BachelorModel.find({});
-    if (semester) {
-      res.send(doc[semester]);
+    const name = req.query("name");
+    if (name) {
+      const doc = await BachelorModel.findOne({ name: name });
+      res.status(200).send(doc);
     } else {
-      res.send(doc);
+      res.status(200).send(await BachelorModel.find({}));
     }
   } catch (e) {
     console.error(e);
@@ -18,12 +20,15 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const bachelor = req.body;
+  const { name, semesters } = req.body;
+  const bachelor = new Bachelor(name, semesters);
+  console.log(bachelor.toJSON());
   try {
-    const modeled = BachelorModel(bachelor);
+    const modeled = BachelorModel(bachelor.toJSON());
     await modeled.save();
     res.status(201).send("Bachelor created");
   } catch (e) {
+    res.sendStatus(403);
     console.error(e);
   }
 });

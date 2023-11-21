@@ -25,7 +25,7 @@ router.get("/", (_, res) => {
 router.post("/", async (req, res) => {
   const email = req.query["email"];
   const password = await bcrypt.hash(req.body["password"], 10);
-  const filter = { studentEmail: email };
+  const filter = { student_email: email };
   const update = { password: password };
   try {
     const doc = await UserModel.findOneAndUpdate(filter, update);

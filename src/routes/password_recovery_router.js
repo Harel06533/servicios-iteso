@@ -17,16 +17,16 @@ router.get("/", (_, res) => {
 
 // '/' stands for '/password' where only checking will be done
 router.post("/", async (req, res) => {
-  const { studentEmail: email } = req.body;
   try {
-    const doc = await UserModel.findOne({ studentEmail: email });
+    const { studentEmail } = req.body;
+    const doc = await UserModel.findOne({ student_email: studentEmail });
     if (!doc) throw new Error("User not found");
     // TODO: this should be its own file
-    const { _id, studentEmail } = doc;
+    const { _id, student_email } = doc;
     const token = jwt.sign(
       {
         _id,
-        email,
+        student_email,
         exp: Date.now() * 60 * 1000,
       },
       secretKey,

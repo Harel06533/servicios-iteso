@@ -2,7 +2,8 @@
 import { Router } from "express";
 import bcrypt from "bcrypt";
 import UserModel from "../models/userModel";
-import User from "../controllers/User";
+import BachelorModel from "../models/bachelorModel";
+import User from "../controllers/user";
 
 const router = Router();
 
@@ -16,7 +17,7 @@ async function encrypt(password) {
 router.post("/", async (req, res) => {
   const { email, password } = req.body;
   try {
-    const doc = await UserModel.findOne({ studentEmail: email });
+    const doc = await UserModel.findOne({ student_email: email });
     const isPassword = await bcrypt.compare(password, doc.password);
     if (!isPassword) throw new Error("Password is not correct");
     else res.status(200).send("User found");
@@ -27,25 +28,28 @@ router.post("/", async (req, res) => {
 
 // register a user (This should not be used in the client end as user registration is not done on the website) this is for testing only
 router.post("/register", async (req, res) => {
-  const { firstNames, lastNames, password, personalEmail, bachelor, semester } =
-    req.body;
+  const { password, bachelor, semester } = req.body;
   try {
-    const newUser = new User(
-      firstNames,
-      lastNames,
-      personalEmail,
-      bachelor,
-      semester,
-    );
+    // get number of credits of the user
+    const studentBachelor = await BachelorModel.findOne({ name: bachelor });
+    let userCurrentCredits = 0;
+    for (let sem = 0; sem < semester; sem++) {
+      userCurrentCredits += studentBachelor.semesters[sem].credits;
+    }
+
+    // create a user object for validation and data ordering
+    const requestBody = { ...req.body, numberOfCredits: userCurrentCredits };
+    const newUser = new User(requestBody);
     const userJson = newUser.toJSON();
+
+    // set json password
     userJson["password"] = await encrypt(password);
     const modeled = UserModel(userJson);
     await modeled.save();
     res.status(201).send("User created");
   } catch (e) {
-    res
-      .status(403)
-      .send("Error on creating user: " + e.errorMessage || e.message);
+    console.error(e);
+    res.status(403).send("Error on creating user: " + e.message);
   }
 });
 

@@ -10,7 +10,7 @@ const router = Router();
 // middleware for ensuring that email exists (lame attempt of auth af)
 router.use("/", (req, res, next) => {
   if (!req.query["email"]) {
-    res.sendStatus(404);
+    res.status(401).redirect("http://localhost:3000/unauthorized");
   } else {
     next();
   }

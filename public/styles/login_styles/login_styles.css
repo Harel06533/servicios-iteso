@@ -29,11 +29,6 @@ a:hover {
 h1 > img {
   width: 65%;
 }
-h1 {
-  font-size: 7rem;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  color: #00395b;
-}
 
 form,
 form div {

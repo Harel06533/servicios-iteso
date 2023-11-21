@@ -4,23 +4,16 @@ import path from "path";
 import cors from "cors";
 import dotenv from "dotenv";
 import router from "./router";
-import mongoose from "mongoose";
+import initializeDatabase from "./database.config";
 dotenv.config();
 const PORT = process.env["PORT"] || 3000;
-const USERS_DB_URL = process.env["USERS_DB"] || "";
 const app = express();
 
-// database setup
-const connection = mongoose.connection;
-connection.on("connecting", () => {
-  console.log("connecting to the database");
-});
+// database setup connection
+initializeDatabase();
 
-connection.on("connected", () => {
-  console.log("Server has connected succesfully to the database");
-  console.log(connection.readyState);
-});
-mongoose.connect(USERS_DB_URL);
+// can render ejs files
+app.set("view engine", "ejs");
 
 // cors accepts every http method
 app.use(

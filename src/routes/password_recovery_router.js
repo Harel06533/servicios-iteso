@@ -1,7 +1,7 @@
 // password recovery routes
 "use strict";
 import { Router } from "express";
-import UserModel from "../../configs/dbconfig";
+import UserModel from "../models/userModel";
 import dotenv from "dotenv";
 import path from "path";
 import jwt from "jsonwebtoken";

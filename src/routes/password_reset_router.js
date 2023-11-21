@@ -2,7 +2,7 @@
 
 import { Router } from "express";
 import bcrypt from "bcrypt";
-import UserModel from "../../configs/dbconfig";
+import UserModel from "../models/userModel";
 import path from "path";
 
 const router = Router();

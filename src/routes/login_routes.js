@@ -1,7 +1,7 @@
 "use strict";
 import { Router } from "express";
 import bcrypt from "bcrypt";
-import UserModel from "../../configs/dbconfig";
+import UserModel from "../models/userModel";
 import User from "../controllers/User";
 
 const router = Router();

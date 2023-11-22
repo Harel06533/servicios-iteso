@@ -41,8 +41,7 @@ document.querySelector("form").addEventListener("submit", async (e) => {
     const res = await fetch("http://localhost:3000/login", postMethod);
     if (res.status !== 200) throw new Error("Not Found");
     const token = await res.text();
-    sessionStorage.setItem("access_token", token);
-    window.location.href = "/home?token=" + token;
+    window.location.href = "/home/profile?token=" + token;
   } catch (e) {
     if (e.message === "Not Found") {
       let alert = document.querySelector(".alert");

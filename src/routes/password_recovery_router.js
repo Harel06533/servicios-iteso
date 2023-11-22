@@ -4,7 +4,6 @@ import { Router } from "express";
 import UserModel from "../models/userModel";
 import dotenv from "dotenv";
 import path from "path";
-import jwt from "jsonwebtoken";
 dotenv.config();
 
 const router = Router();
@@ -21,17 +20,7 @@ router.post("/", async (req, res) => {
     const { studentEmail } = req.body;
     const doc = await UserModel.findOne({ student_email: studentEmail });
     if (!doc) throw new Error("User not found");
-    // TODO: this should be its own file
-    const { _id, student_email } = doc;
-    const token = jwt.sign(
-      {
-        _id,
-        student_email,
-        exp: Date.now() * 60 * 1000,
-      },
-      secretKey,
-    );
-    res.status(200).send(token);
+    res.sendStatus(200);
   } catch (e) {
     console.error(e);
     res.status(404).send("User was not found");

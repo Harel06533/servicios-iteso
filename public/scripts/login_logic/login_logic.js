@@ -25,7 +25,7 @@ function createDangerAlert(error) {
   return div;
 }
 
-// on form submitted
+// on form submitted -- sends the email and password, if user is found then generates an access token
 document.querySelector("form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const email = document.getElementById("username").value + "@iteso.mx";
@@ -40,7 +40,9 @@ document.querySelector("form").addEventListener("submit", async (e) => {
     };
     const res = await fetch("http://localhost:3000/login", postMethod);
     if (res.status !== 200) throw new Error("Not Found");
-    else window.location.href = "/home";
+    const token = await res.text();
+    sessionStorage.setItem("access_token", token);
+    window.location.href = "/home?token=" + token;
   } catch (e) {
     if (e.message === "Not Found") {
       let alert = document.querySelector(".alert");

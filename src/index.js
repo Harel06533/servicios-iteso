@@ -5,7 +5,6 @@ import cors from "cors";
 import dotenv from "dotenv";
 import router from "./router";
 import initializeDatabase from "./database.config";
-import ejs from "ejs";
 dotenv.config();
 const PORT = process.env["PORT"] || 3000;
 const app = express();
@@ -20,7 +19,7 @@ app.set("view engine", "ejs");
 app.use(
   cors({
     methods: ["GET", "PUT", "POST", "DELETE", "PATCH", "UPDATE"],
-  })
+  }),
 );
 
 // only recieves json on the body

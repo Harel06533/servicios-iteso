@@ -18,10 +18,7 @@ async function encrypt(password) {
 router.post("/", async (req, res) => {
   const { email, password } = req.body;
   try {
-    const doc = await UserModel.findOne(
-      { student_email: email },
-      "password student_email personal_email"
-    );
+    const doc = await UserModel.findOne({ student_email: email });
     const isPassword = await bcrypt.compare(password, doc.password);
     if (!isPassword) throw new Error("Password is not correct");
     const accessToken = generateAccessToken({
@@ -39,24 +36,14 @@ router.post("/register", async (req, res) => {
   const { password, bachelor, semester } = req.body;
   try {
     // get number of credits of the user
-    const { semesters, total_credits } = await BachelorModel.findOne(
-      { name: bachelor },
-      "semesters total_credits"
-    );
+    const studentBachelor = await BachelorModel.findOne({ name: bachelor });
     let userCurrentCredits = 0;
     for (let sem = 0; sem < semester; sem++) {
-      userCurrentCredits += userCurrentCredits += semesters[sem].credits;
+      userCurrentCredits += studentBachelor.semesters[sem].credits;
     }
-    const userCreditsPercent = Math.floor(
-      (userCurrentCredits / total_credits) * 100
-    );
 
     // create a user object for validation and data ordering
-    const requestBody = {
-      ...req.body,
-      numberOfCredits: userCurrentCredits,
-      creditsPercent: userCreditsPercent,
-    };
+    const requestBody = { ...req.body, numberOfCredits: userCurrentCredits };
     const newUser = new User(requestBody);
     const userJson = newUser.toJSON();
 

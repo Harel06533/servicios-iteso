@@ -12,7 +12,7 @@ function generateAccessToken({ personal_email, student_email }) {
     personal_email: personal_email,
     student_email: student_email,
   };
-  const options = { expiresIn: "5m" };
+  const options = { expiresIn: "1m" };
   return jwt.sign(payload, secret, options);
 }
 

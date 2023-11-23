@@ -23,7 +23,6 @@ class User {
   #bachelor; // degree name
   #semester; // number of semester
   #numOfCredits; // number of credits taken
-  #creditsPercent; // percentage of approved credits
   #debts; // [ {"reason": 0.0} ] reason - amount
 
   // constructor (object)
@@ -38,7 +37,6 @@ class User {
     bachelor,
     semester,
     numberOfCredits,
-    creditsPercent,
     debts,
   }) {
     this.setFirstNames(firstNames);
@@ -53,7 +51,6 @@ class User {
     this.setBachelor(bachelor);
     this.setSemester(semester);
     this.setNumberOfCredits(numberOfCredits);
-    this.setCreditsPercent(creditsPercent);
     this.setDebts(debts);
   }
 
@@ -128,10 +125,6 @@ class User {
     this.#numOfCredits = numOfCredits;
   }
 
-  setCreditsPercent(creditsPercent) {
-    this.#creditsPercent = creditsPercent;
-  }
-
   setDebts(debts) {
     this.#debts = [...debts];
   }
@@ -185,10 +178,6 @@ class User {
     return this.#numOfCredits;
   }
 
-  getCreditsPercent() {
-    return this.#creditsPercent;
-  }
-
   getDebts() {
     return this.#debts;
   }
@@ -208,7 +197,6 @@ class User {
       bachelor: this.getBachelor(),
       semester: this.getSemester(),
       num_of_credits: this.getNumberOfCredits(),
-      credits_percent: this.getCreditsPercent(),
       debts: this.getDebts(),
     };
   }
@@ -224,7 +212,6 @@ class User {
       bachelor,
       semester,
       numOfCredits,
-      creditsPercent,
       debts,
     } = object;
     const names = fullName.split(" ");
@@ -241,8 +228,7 @@ class User {
       bachelor,
       semester,
       numOfCredits,
-      creditsPercent,
-      debts
+      debts,
     );
     user.setStudentEmail(studentEmail);
   }

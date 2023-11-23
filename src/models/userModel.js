@@ -83,12 +83,6 @@ const userSchema = new Schema({
     type: Number,
   },
 
-  // percent of credits
-  credits_percent: {
-    required: true,
-    type: Number,
-  },
-
   // debts [{ "reason": 00 -- amount }]
   debts: [
     {

@@ -1,14 +1,18 @@
 "use strict";
 
 // creates the user info card
-function createUserInfoCard() {
+function createUserInfoCard(data) {
   const dataSet = [
-    ["tagNumber", "tag", { value: "000000", title: "Expediente" }], // tag number
-    ["digit", "barcode", { value: "000", title: "Dígito verificador" }], // digit
+    ["tagNumber", "tag", { value: data.expedient, title: "Expediente" }], // tag number
+    [
+      "digit",
+      "barcode",
+      { value: data.verifier_digit, title: "Dígito verificador" },
+    ], // digit
     [
       "schoolEmail",
       "envelope",
-      { value: "email@iteso.mx", title: "Correo electrónico" },
+      { value: data.student_email, title: "Correo electrónico" },
     ], // school email
   ];
   const userListGroup = createListGroup(dataSet, []);
@@ -23,7 +27,7 @@ function createUserInfoCard() {
     "user-pic",
     "d-flex",
     "flex-column",
-    "align-items-center",
+    "align-items-center"
   );
   userImage.innerHTML = `
               <img
@@ -33,7 +37,7 @@ function createUserInfoCard() {
                 style="width: 10rem"
               />
               <h6 class="text-uppercase mt-1" style="color: #888">
-                nombre apellido
+              ${data.first_names[0]} ${data.last_names[0]} 
               </h6>
 `;
   card.firstElementChild.insertAdjacentElement("afterbegin", userImage);
@@ -41,24 +45,20 @@ function createUserInfoCard() {
 }
 
 // creates a card for displaying the personal data
-function createPersonalDataCard() {
+function createPersonalDataCard(data) {
   const dataSet = [
     [
       "personalPhone",
       "phone",
-      { value: "33-333-3333", title: "Número telefónico" },
+      { value: data.phone_number, title: "Número telefónico" },
     ], // phone number
     [
       "personalEmail",
       "envelope",
-      { value: "correopersonal@mail.com", title: "Correo personal" },
+      { value: data.personal_email, title: "Correo personal" },
     ], // personal email
-    [
-      "location",
-      "location-dot",
-      { value: "Guadalajara, Jalisco, México.", title: "Ubicación" },
-    ], // location
-    ["major", "graduation-cap", { value: "Grad. Nombre", title: "Carrera" }], // location
+    ["location", "location-dot", { value: data.location, title: "Ubicación" }], // location
+    ["major", "graduation-cap", { value: data.bachelor, title: "Carrera" }], // location
   ];
 
   // wrap every inner data from the li into a div
@@ -73,7 +73,6 @@ function createPersonalDataCard() {
     <div class="modifier d-flex" style="gap: 0.6rem;"></div>
 `;
     li.firstElementChild.insertAdjacentHTML("afterbegin", inner);
-    console.log(li.id);
     if (li.id !== "major") {
       const modifyButton = document.createElement("span");
       modifyButton.classList.add("modify-button", "fa-solid", "fa-pen");
@@ -99,9 +98,16 @@ function createPersonalDataCard() {
 }
 
 // creates a card to display the academic information
-function createAcademicInformationCard() {
+function createAcademicInformationCard(data) {
   const dataSet = [
-    ["pay", "coins", { value: "Por pagar", title: "Colegiatura" }], // phone number
+    [
+      "pay",
+      "coins",
+      {
+        value: data.debts.length > 0 ? "Por pagar" : "Pagado",
+        title: "Colegiatura",
+      },
+    ], // phone number
     [
       "subjects",
       "list-check",
@@ -123,7 +129,9 @@ function createAcademicInformationCard() {
 
   // wrap every inner data from the li into a div
   let index = 0;
-  listItems[0].classList.add("text-warning");
+  if (data.debts.length > 0) {
+    listItems[0].classList.add("text-warning");
+  }
   listItems.forEach((li) => {
     const inner = li.innerHTML;
     li.innerHTML = `
@@ -139,13 +147,13 @@ function createAcademicInformationCard() {
 
   // creates the progressbar for the user
   const li = createListItem("barprogress", "", {}, []);
-  const progressbar = createProgressBar(35);
+  const progressbar = createProgressBar(Math.floor(data.credits_percent * 100));
   li.classList.add("mt-4", "justify-content-between", "progress-bar");
   li.innerHTML = "";
   li.appendChild(progressbar);
   li.insertAdjacentHTML(
     "beforeend",
-    '<span class="fw-bold" style="color: #888; font-size: 0.7rem" aria-label="type">Creditos aprobados</span>',
+    '<span class="fw-bold" style="color: #888; font-size: 0.7rem" aria-label="type">Creditos aprobados</span>'
   );
   userListGroup.appendChild(li);
 
@@ -166,7 +174,7 @@ function createAcademicInformationCard() {
 }
 
 // returns the user profile to render
-function createUserProfile() {
+function createUserProfile(data) {
   // set the container
   const container = document.createElement("div");
   container.classList.add("container");
@@ -176,14 +184,14 @@ function createUserProfile() {
   title.textContent = "Mi Perfil";
   container.appendChild(title);
 
-  container.appendChild(createUserInfoCard());
+  container.appendChild(createUserInfoCard(data));
 
   // div for academic and personal info
   const div = document.createElement("div");
   div.style.gap = "1rem";
   div.classList.add("d-flex");
-  div.appendChild(createPersonalDataCard());
-  div.appendChild(createAcademicInformationCard());
+  div.appendChild(createPersonalDataCard(data));
+  div.appendChild(createAcademicInformationCard(data));
 
   // set div to container
   container.appendChild(div);

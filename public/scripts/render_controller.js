@@ -1,14 +1,17 @@
 // controlls rendering and navigation
 "use strict";
 
-// test render, this should not be used
-function testRender(id) {
-  const div = document.createElement("div");
-  div.textContent = id;
-  renderSection(div);
+async function getData() {
+  const token = new URLSearchParams(window.location.search).get("token");
+  const res = await fetch("http://localhost:3000/home?token=" + token);
+  const data = await res.json();
+  document.getElementById("userName").textContent =
+    data.user_data.first_names[0] + " " + data.user_data.last_names[0];
+  renderSection(createUserProfile(data.user_data));
 }
 
 // variables
+
 const content = document.querySelector(".content");
 const navButtons = Array.from(
   document
@@ -50,4 +53,4 @@ navButtons.forEach((b) => {
 });
 
 // render user profile by default
-renderSection(createUserProfile());
+getData();

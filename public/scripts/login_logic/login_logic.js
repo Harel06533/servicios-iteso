@@ -13,7 +13,7 @@ function createDangerAlert(error) {
     "show",
     "d-flex",
     "align-items-center",
-    "justify-content-center",
+    "justify-content-center"
   );
   div.role = "alert";
   div.style.position = "absolute";
@@ -40,15 +40,14 @@ document.querySelector("form").addEventListener("submit", async (e) => {
     };
     const res = await fetch("http://localhost:3000/login", postMethod);
     if (res.status !== 200) throw new Error("Not Found");
-    const token = await res.text();
-    sessionStorage.setItem("access_token", token);
-    window.location.href = "/home?token=" + token;
+    const { access_token } = await res.json();
+    window.location.href = "/home/page?token=" + access_token;
   } catch (e) {
     if (e.message === "Not Found") {
       let alert = document.querySelector(".alert");
       if (!alert) {
         alert = createDangerAlert(
-          "El usuario o la contraseña que ingresaste es incorrecto",
+          "El usuario o la contraseña que ingresaste es incorrecto"
         );
         document
           .querySelector(".modal")

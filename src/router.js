@@ -10,6 +10,7 @@ import passResetRouter from "./routes/password_reset_router";
 import homeRouter from "./routes/home_routes";
 import unauthRouter from "./routes/unauthorized_router";
 import bachelorRouter from "./routes/bachelor_routes";
+import billingRouter from "./routes/billing_routes";
 const baseRouter = Router();
 
 // base router --> sends login page
@@ -24,5 +25,6 @@ baseRouter.use("/password", passRecoveryRouter); // on password recovery, route
 baseRouter.use("/passres", passResetRouter); // on password reset, route
 baseRouter.use("/home", homeRouter);
 baseRouter.use("/bachelor", bachelorRouter);
+baseRouter.use("/billing", billingRouter);
 
 export default baseRouter;

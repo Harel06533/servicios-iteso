@@ -2,11 +2,16 @@
 
 // since this card is different, we require a special function
 function createTotalBillingCard(data) {
+  console.log(data.debts);
+  const totalDebt = data.debts.reduce(
+    (acc, currentItem) => acc + currentItem.amount,
+    0,
+  );
   const dataSet = [
     [
       "totalDomBilling",
       "money-check-dollar",
-      { value: (20118.48).toLocaleString("en-US"), title: "Total domiciliado" },
+      { value: totalDebt.toLocaleString("en-US"), title: "Total domiciliado" },
     ],
     [
       "notDomBilling",
@@ -17,7 +22,7 @@ function createTotalBillingCard(data) {
       "absoluteTotal",
       "receipt",
       {
-        value: (20118.48).toLocaleString("en-US"),
+        value: totalDebt.toLocaleString("en-US"),
         title: "Total",
       },
     ],
@@ -36,8 +41,32 @@ function createTotalBillingCard(data) {
   const payButton = document.createElement("button");
   payButton.textContent = "Pagar";
   payButton.classList.add("btn", "text-white", "btn-iteso-tertiary");
-  lastItem.appendChild(payButton);
 
+  // add payment functionality
+  payButton.addEventListener("click", async (e) => {
+    e.preventDefault();
+    const post = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        token: window.location.search.split("=")[1],
+      },
+      body: JSON.stringify([]), // for now, an empty array will do just fine
+    };
+    try {
+      const res = await fetch("http://localhost:3000/billing", post);
+      if (res.status === 201) {
+        alert("Pago realizado con éxito");
+        window.location.reload();
+      } else {
+        throw new Error(res.status);
+      }
+    } catch (e) {
+      alert("No se ha podido hacer el pago: ", e.message);
+    }
+  });
+
+  lastItem.appendChild(payButton);
   // create card
   const card = createItemsCard(listGroup, []);
   card.classList.add("flex-grow-1");
@@ -65,32 +94,46 @@ function createBillingSection(data) {
     "bill-header",
     "w-100",
     "d-flex",
-    "justify-content-between",
+    "flex-column",
+    "justify-content-center",
     "bg-secondary-100",
     "align-items-center",
   );
-  billingData.innerHTML = `
-  <p style="font-size: 1.2rem">
-    <strong class="text-iteso-primary-400">Fecha de pago:</strong>
-    <span>1 de dic de 2023</span>
-  </p>
-  <p
-    class="single-debt-price text-iteso-primary-400"
-    style="font-size: 1.2rem"
-  >
-    20,118,48
-  </p>
+  // add all debts
+  data.debts.forEach((debt) => {
+    const div = document.createElement("div");
+    div.classList.add(
+      "billing-info",
+      "w-100",
+      "d-flex",
+      "justify-content-between",
+      "bg-secondary-100",
+      "align-items-center",
+    );
+    div.innerHTML = `
+      <p style="font-size: 1.2rem">
+        <strong class="text-iteso-primary-400">Razón de pago:</strong>
+        <span>${debt.reason}</span>
+      </p>
+      <p class="single-debt-price text-iteso-primary-400" style="font-size: 1.2rem">
+        $${debt.amount.toLocaleString("en-US")}
+      </p>
 `;
+    billingData.appendChild(div);
+  });
 
   // add user info
   flexible.appendChild(createUserInfoCard(data));
   flexible.append(createTotalBillingCard(data));
 
+  // create and add accordion
+  const currentDate = getDateAsFormat(new Date().toLocaleDateString("es-MX"));
   container.appendChild(flexible);
   const accordion = createAccordion(
     "billingAccordion",
     "billingInfo",
     billingData,
+    `Adeudos consultados al ${currentDate}`,
   );
   accordion.classList.add("mt-4");
 

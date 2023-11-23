@@ -80,7 +80,7 @@ function createProgressBar(percentage) {
 }
 
 // creates a functional accordion
-function createAccordion(accId, collapseId, contentElement) {
+function createAccordion(accId, collapseId, contentElement, accordionTitle) {
   const accordion = document.createElement("div");
   accordion.id = accId;
   accordion.classList.add("accordion", "accordion-flush", "w-100");
@@ -96,7 +96,7 @@ function createAccordion(accId, collapseId, contentElement) {
       aria-controls="${collapseId}"
       >
       <span class="fa-solid fa-building-columns text-white"></span>
-      Adeudos consultados al 16 de nov de 2023
+      ${accordionTitle}
     </button>
   </h2>
   <div
@@ -110,4 +110,26 @@ function createAccordion(accId, collapseId, contentElement) {
 `;
   accordion.querySelector(".accordion-body").appendChild(contentElement);
   return accordion;
+}
+
+// get the current date in the format of "00 de mes del año"
+function getDateAsFormat(currentDate) {
+  const individual = currentDate.split("/");
+  const months = [
+    "ene",
+    "feb",
+    "mar",
+    "abr",
+    "may",
+    "jun",
+    "jul",
+    "ago",
+    "sep",
+    "oct",
+    "nov",
+    "dic",
+  ];
+  return `${individual[0]} de ${months[individual[1] - 1]} del ${
+    individual[2]
+  }`;
 }

@@ -7,9 +7,9 @@ dotenv.config();
 const secret = process.env["SECRET_KEY"];
 
 // generates an access token
-function generateAccessToken({ personal_email, student_email }) {
+function generateAccessToken({ full_name, student_email }) {
   const payload = {
-    personal_email: personal_email,
+    full_name: full_name,
     student_email: student_email,
   };
   const options = { expiresIn: "5m" };

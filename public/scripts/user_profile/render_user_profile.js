@@ -2,15 +2,16 @@
 
 // creates the user info card
 function createUserInfoCard(data) {
+  console.log(data);
   const dataSet = [
     ["tagNumber", "tag", { value: data.expedient, title: "Expediente" }], // tag number
     [
-      "digit",
+      "verifier_digit",
       "barcode",
       { value: data.verifier_digit, title: "Dígito verificador" },
     ], // digit
     [
-      "schoolEmail",
+      "student_email",
       "envelope",
       { value: data.student_email, title: "Correo electrónico" },
     ], // school email
@@ -27,7 +28,7 @@ function createUserInfoCard(data) {
     "user-pic",
     "d-flex",
     "flex-column",
-    "align-items-center"
+    "align-items-center",
   );
   userImage.innerHTML = `
               <img
@@ -48,17 +49,17 @@ function createUserInfoCard(data) {
 function createPersonalDataCard(data) {
   const dataSet = [
     [
-      "personalPhone",
+      "phone_number",
       "phone",
       { value: data.phone_number, title: "Número telefónico" },
     ], // phone number
     [
-      "personalEmail",
+      "personal_email",
       "envelope",
       { value: data.personal_email, title: "Correo personal" },
     ], // personal email
     ["location", "location-dot", { value: data.location, title: "Ubicación" }], // location
-    ["major", "graduation-cap", { value: data.bachelor, title: "Carrera" }], // location
+    ["bachelor", "graduation-cap", { value: data.bachelor, title: "Carrera" }], // location
   ];
 
   // wrap every inner data from the li into a div
@@ -72,12 +73,44 @@ function createPersonalDataCard(data) {
     li.innerHTML = `
     <div class="modifier d-flex" style="gap: 0.6rem;"></div>
 `;
+    // create a modify button with functionality
     li.firstElementChild.insertAdjacentHTML("afterbegin", inner);
-    if (li.id !== "major") {
-      const modifyButton = document.createElement("span");
-      modifyButton.classList.add("modify-button", "fa-solid", "fa-pen");
+    if (li.id !== "bachelor") {
+      const modifyButton = document.createElement("button");
+      modifyButton.classList.add("modify-button", "fa-solid", "fa-pen", "btn");
       modifyButton.style.fontSize = "1rem";
       modifyButton.style.color = "#888";
+      modifyButton.onclick = function () {
+        const changeModal = document.getElementById("dataChangeModal");
+        const title = li.querySelector(".fw-bold").textContent;
+        const id = li.id;
+        changeModal.querySelector(".modal-title").textContent = title;
+        changeModal.querySelector("input").value = "";
+        changeModal
+          .querySelector(".btn-iteso-secondary")
+          .addEventListener("click", async () => {
+            const newData = changeModal.querySelector("input").value;
+            if (newData) {
+              try {
+                const jsonFormat = `{"${id}":"${newData}"}`;
+                const post = {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                    token: window.location.search.split("=")[1],
+                  },
+                  body: jsonFormat,
+                };
+                await fetch("http://localhost:3000/login/change", post);
+                window.location.reload();
+              } catch (e) {
+                alert("No se ha podido cambiar el dato, error: " + e.message);
+              }
+            }
+          });
+        const bsModal = new bootstrap.Modal(changeModal, {});
+        bsModal.show();
+      };
       li.appendChild(modifyButton);
     }
   });
@@ -153,7 +186,7 @@ function createAcademicInformationCard(data) {
   li.appendChild(progressbar);
   li.insertAdjacentHTML(
     "beforeend",
-    '<span class="fw-bold" style="color: #888; font-size: 0.7rem" aria-label="type">Creditos aprobados</span>'
+    '<span class="fw-bold" style="color: #888; font-size: 0.7rem" aria-label="type">Creditos aprobados</span>',
   );
   userListGroup.appendChild(li);
 

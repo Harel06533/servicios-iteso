@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import UserModel from "../models/userModel";
 import BachelorModel from "../models/bachelorModel";
 import User from "../controllers/user";
-import { generateAccessToken } from "../controllers/token";
+import { generateAccessToken, validateAccessToken } from "../controllers/token";
 
 const router = Router();
 
@@ -20,18 +20,37 @@ router.post("/", async (req, res) => {
   try {
     const doc = await UserModel.findOne(
       { student_email: email },
-      "password personal_email student_email"
+      "password full_name student_email",
     );
     const isPassword = await bcrypt.compare(password, doc.password);
     if (!isPassword) throw new Error("Password is not correct");
     const accessToken = generateAccessToken({
-      personal_email: doc.personal_email,
+      full_name: doc.full_name,
       student_email: doc.student_email,
     });
     res.status(200).json({ access_token: accessToken });
   } catch (e) {
     console.error(e);
     res.status(404).send("User was not found");
+  }
+});
+
+// post on change, changes a field (not the password)
+router.post("/change", async (req, res) => {
+  try {
+    const change = req.body;
+    const tokenData = validateAccessToken(req.headers["token"]).data;
+    await UserModel.findOneAndUpdate(
+      {
+        full_name: tokenData.full_name,
+        student_email: tokenData.student_email,
+      },
+      change,
+    );
+    res.status(201).send("Data changed");
+  } catch (e) {
+    console.error(e.message);
+    res.status(403).send("Unable to perform request");
   }
 });
 
@@ -42,7 +61,7 @@ router.post("/register", async (req, res) => {
     // get number of credits of the user and percent
     const { semesters, total_credits } = await BachelorModel.findOne(
       { name: bachelor },
-      "semesters total_credits"
+      "semesters total_credits",
     );
     let userCurrentCredits = 0;
     for (let sem = 0; sem < semester; sem++) {

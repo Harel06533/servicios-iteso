@@ -1,7 +1,7 @@
 "use strict";
 
 // since this card is different, we require a special function
-function createTotalBillingCard() {
+function createTotalBillingCard(data) {
   const dataSet = [
     [
       "totalDomBilling",
@@ -44,7 +44,7 @@ function createTotalBillingCard() {
   return card;
 }
 
-function createBillingSection() {
+function createBillingSection(data) {
   // set the container
   const container = document.createElement("div");
   container.classList.add("container");
@@ -83,8 +83,8 @@ function createBillingSection() {
 `;
 
   // add user info
-  flexible.appendChild(createUserInfoCard());
-  flexible.append(createTotalBillingCard());
+  flexible.appendChild(createUserInfoCard(data));
+  flexible.append(createTotalBillingCard(data));
 
   container.appendChild(flexible);
   const accordion = createAccordion(

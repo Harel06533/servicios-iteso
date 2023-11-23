@@ -39,9 +39,9 @@ router.get("/", async (req, res) => {
     const doc = await UserModel.findOne(
       {
         student_email: data.student_email,
-        personal_email: data.personal_email,
+        full_name: data.full_name,
       },
-      GET_FILTER
+      GET_FILTER,
     );
     res.status(200).json({ user_data: doc });
   } catch (e) {

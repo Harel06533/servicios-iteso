@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/globalconfig.css" />
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+    <title>ITESO - Servicios Mi ITESO</title>
+    <style>
+        .accordion-button {
+            font-size: 1.1rem;
+            gap: 0.8rem;
+        }
+
+        .accordion-button::after {
+            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
+        }
+
+        main {
+            height: calc(100vh - 59px);
+            /* this will keep the height constant */
+        }
+    </style>
+</head>
+
+<body style="height: 100vh; background-color: #ddd">
+    <!-- main navbar -->
+    <header>
+        <!-- This is bugged, left to 93% for firefox display-->
+        <nav class="navbar w-100 navbar-expand-lg bg-iteso-primary p-0" style="height: 59px">
+            <div class="container-fluid p-0 d-flex justify-content-between" style="align-items: initial">
+                <a class="navbar-brand bg-iteso-secondary m-0 p-1" href="https://www.iteso.mx/"><img style="width: 4rem"
+                        src="/assets/iteso-logo-cropped.png" alt="iteso logo" /></a>
+                <div class="collapse navbar-collapse justify-content-between" id="mainPageNavbar">
+                    <ul class="navbar-nav d-flex justify-content-between align-items-center w-100 m-0 h-100"
+                        style="height: inherit">
+                        <li class="nav-item mx-3">
+                            <h5 class="title text-white text-uppercase m-0">
+                                zona reservada
+                            </h5>
+                        </li>
+                        <li class="nav-item mx-3">
+                            <form role="search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control rounded-start-pill" placeholder="Buscar"
+                                        aria-label="Buscar" style="background-color: #fafafa; opacity: 85%" />
+                                    <button type="submit" class="btn btn-iteso-secondary rounded-end-pill">
+                                        <span class="text-white fa-solid fa-magnifying-glass"></span>
+                                    </button>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- main content -->
+    <main class="d-flex">
+        <div class="sidebar h-100">
+            <!-- sidebar -->
+            <div class="d-flex flex-column justify-content-between bg-iteso-primary-400 h-100" style="width: 20rem">
+                <div class="accordion accordion-flush w-100" id="sidebarAccordion">
+                    <div class="accordion-item">
+                        <h2 id="accordion-header" style="margin-bottom: 0">
+                            <button
+                                class="collapsed border-bottom border-white accordion-button bg-iteso-primary-700 text-white fw-bold d-flex align-items-center justify-content-center"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#moneyInfo"
+                                aria-expanded="false" aria-controls="moneyInfo">
+                                <span class="fa-solid fa-building-columns text-white"></span>
+                                Finanzas
+                            </button>
+                        </h2>
+                        <!-- TODO: DO LIST ITEMS -->
+                        <div id="moneyInfo" class="accordion-collapse collapse" data-bs-parent="#sidebarAccordion">
+                            <div class="accordion-body p-0">
+                                <button id="toPayment"
+                                    class="w-100 btn btn-iteso-primary-100 rounded-0 text-iteso-primary-400 p-3 border-0 border-bottom border-iteso-primary-400">
+                                    Simulador de pagos
+                                </button>
+                                <button id="toSchoolBill"
+                                    class="w-100 btn btn-iteso-primary-100 rounded-0 text-iteso-primary-400 p-3 border-0 border-bottom border-iteso-primary-400">
+                                    Pago de colegiaturas
+                                </button>
+                                <button id="toEducationalCredit"
+                                    class="w-100 btn btn-iteso-primary-100 rounded-0 text-iteso-primary-400 p-3 border-0 border-bottom border-iteso-primary-400">
+                                    Cita para credito educativo
+                                </button>
+                                <button id="toSchoolarshipPlan"
+                                    class="w-100 btn btn-iteso-primary-100 rounded-0 text-iteso-primary-400 p-3 border-0 border-bottom border-iteso-primary-400">
+                                    Plan becario
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 id="accordion-header2" style="margin-bottom: 0">
+                            <button
+                                class="collapsed border-bottom border-white accordion-button bg-iteso-primary-700 text-white fw-bold d-flex align-items-center justify-content-center"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#registrationInformation"
+                                aria-expanded="false" aria-controls="registrarionInformation">
+                                <span class="fa-solid fa-list-check text-white"></span>
+                                Inscripciones
+                            </button>
+                        </h2>
+                        <!-- TODO: DO LIST ITEMS -->
+                        <div id="registrationInformation" class="accordion-collapse collapse"
+                            data-bs-parent="#sidebarAccordion">
+                            <div class="accordion-body p-0">
+                                <button id="toRegisterAgain"
+                                    class="w-100 btn btn-iteso-primary-100 rounded-0 text-iteso-primary-400 p-3 border-0 border-bottom border-iteso-primary-400">
+                                    Proceso de reinscripcion
+                                </button>
+                                <button id="toRegisterInfo"
+                                    class="w-100 btn btn-iteso-primary-100 rounded-0 text-iteso-primary-400 p-3 border-0 border-bottom border-iteso-primary-400">
+                                    Ficha de reinscripcion
+                                </button>
+                                <button id="toSubjects"
+                                    class="w-100 btn btn-iteso-primary-100 rounded-0 text-iteso-primary-400 p-3 border-0 border-bottom border-iteso-primary-400">
+                                    Alta y baja de materias
+                                </button>
+                                <button id="toCourseOfferings"
+                                    class="w-100 btn btn-iteso-primary-100 rounded-0 text-iteso-primary-400 p-3 border-0 border-bottom border-iteso-primary-400">
+                                    Oferta de asignaturas
+                                </button>
+                                <button id="toClosedGroups"
+                                    class="w-100 btn btn-iteso-primary-100 rounded-0 text-iteso-primary-400 p-3 border-0 border-bottom border-iteso-primary-400">
+                                    Grupos cerrados
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 id="accordion-header3" style="margin-bottom: 0">
+                            <button
+                                class="collapsed border-bottom border-white accordion-button bg-iteso-primary-700 text-white fw-bold d-flex align-items-center justify-content-center"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#academicinformation"
+                                aria-expanded="false" aria-controls="academicinformation">
+                                <span class="fa-solid fa-graduation-cap text-white"></span>
+                                Académico
+                            </button>
+                        </h2>
+                        <!-- TODO: DO LIST ITEMS -->
+                        <div id="academicinformation" class="accordion-collapse collapse"
+                            data-bs-parent="#sidebarAccordion">
+                            <div class="accordion-body p-0">
+                                <button id="toAcademicHistory"
+                                    class="w-100 btn btn-iteso-primary-100 rounded-0 text-iteso-primary-400 p-3 border-0 border-bottom border-iteso-primary-400">
+                                    Historia académica
+                                </button>
+                                <button id="toSchoolSchedule"
+                                    class="w-100 btn btn-iteso-primary-100 rounded-0 text-iteso-primary-400 p-3 border-0 border-bottom border-iteso-primary-400">
+                                    Horario escolar
+                                </button>
+                                <button id="toSubjectRoute"
+                                    class="w-100 btn btn-iteso-primary-100 rounded-0 text-iteso-primary-400 p-3 border-0 border-bottom border-iteso-primary-400">
+                                    Ruta sugerida de estudios
+                                </button>
+                                <button id="toIAE"
+                                    class="w-100 btn btn-iteso-primary-100 rounded-0 text-iteso-primary-400 p-3 border-0 border-bottom border-iteso-primary-400">
+                                    Evaluacion de cursos
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 id="accordion-header4" style="margin-bottom: 0">
+                            <button
+                                class="collapsed border-bottom border-white accordion-button bg-iteso-primary-700 text-white fw-bold d-flex align-items-center justify-content-center"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#infoemploymentnetwork"
+                                aria-expanded="false" aria-controls="infoemploymentnetwork">
+                                <span class="fa-solid fa-briefcase text-white"></span>
+                                Red y empleo
+                            </button>
+                        </h2>
+                        <!-- TODO: DO LIST ITEMS -->
+                        <div id="infoemploymentnetwork" class="accordion-collapse collapse"
+                            data-bs-parent="#sidebarAccordion">
+                            <div class="accordion-body p-0">
+                                <button id="toEmployable"
+                                    class="w-100 btn btn-iteso-primary-100 rounded-0 text-iteso-primary-400 p-3 border-0 border-bottom border-iteso-primary-400">
+                                    Emplea
+                                </button>
+                                <button id="toCJuven"
+                                    class="w-100 btn btn-iteso-primary-100 rounded-0 text-iteso-primary-400 p-3 border-0 border-bottom border-iteso-primary-400">
+                                    C-Juven
+                                </button>
+                                <button id="toPap"
+                                    class="w-100 btn btn-iteso-primary-100 rounded-0 text-iteso-primary-400 p-3 border-0 border-bottom border-iteso-primary-400">
+                                    PAP
+                                </button>
+                                <button id="toSocialService"
+                                    class="w-100 btn btn-iteso-primary-100 rounded-0 text-iteso-primary-400 p-3 border-0 border-bottom border-iteso-primary-400">
+                                    Servicio social
+                                </button>
+                                <button id="toBuisnessNetwork"
+                                    class="w-100 btn btn-iteso-primary-100 rounded-0 text-iteso-primary-400 p-3 border-0 border-bottom border-iteso-primary-400">
+                                    Red de negocios
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 id="accordion-header4" style="margin-bottom: 0">
+                            <button
+                                class="collapsed border-bottom border-white accordion-button bg-iteso-primary-700 text-white fw-bold d-flex align-items-center justify-content-center"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#infostudy"
+                                aria-expanded="false" aria-controls="infostudy">
+                                <span class="fa-solid fa-user text-white"></span>
+                                Estudiante
+                            </button>
+                        </h2>
+                        <!-- TODO: DO LIST ITEMS -->
+                        <div id="infostudy" class="accordion-collapse collapse" data-bs-parent="#sidebarAccordion">
+                            <div class="accordion-body p-0">
+                                <button id="toPersonalInfo"
+                                    class="w-100 btn btn-iteso-primary-100 rounded-0 text-iteso-primary-400 p-3 border-0 border-bottom border-iteso-primary-400">
+                                    Datos Personales
+                                </button>
+                                <button id="toAcademicInfo"
+                                    class="w-100 btn btn-iteso-primary-100 rounded-0 text-iteso-primary-400 p-3 border-0 border-bottom border-iteso-primary-400">
+                                    Informacion académica
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="user-menu"
+                    class="w-100 bg-iteso-tertiary p-3 text-white d-flex justify-content-between align-items-center pointer"
+                    style="font-size: 1.3rem">
+                    <div class="user-info" style="cursor: pointer">
+                        <span class="fa-solid fa-user"></span>
+                        <strong id="userName" style="font-size: 0.8rem">Nombre Apellido</strong>
+                    </div>
+                    <span id="logOutButton" class="fa-solid fa-right-from-bracket"></span>
+                </div>
+            </div>
+        </div>
+        <div class="content flex-grow-1 px-4 py-4" style="background-color: white; overflow-y: scroll;">
+            <table class="table  table-bordered border-secondary">
+                <thead>
+                    <tr class="table-primary">
+                        <th scope="col">Nombre de asignatura</th>
+                        <th scope="col">Créditos</th>
+                        <th scope="col">Calificación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td class="celda">Mark</td>
+                        <td class="celda">Otto</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td class="celda">Mark</td>
+                        <td class="celda">Otto</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td class="celda">Mark</td>
+                        <td class="celda">Otto</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td class="celda">Mark</td>
+                        <td class="celda">Otto</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td class="celda">Mark</td>
+                        <td class="celda">Otto</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td class="celda">Mark</td>
+                        <td class="celda">Otto</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td class="celda">Mark</td>
+                        <td class="celda">Otto</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td class="celda">Mark</td>
+                        <td class="celda">Otto</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td class="celda">Mark</td>
+                        <td class="celda">Otto</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td class="celda">Mark</td>
+                        <td class="celda">Otto</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td class="celda">Mark</td>
+                        <td class="celda">Otto</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td class="celda">Mark</td>
+                        <td class="celda">Otto</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td class="celda">Mark</td>
+                        <td class="celda">Otto</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td class="celda">Mark</td>
+                        <td class="celda">Otto</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td class="celda">Mark</td>
+                        <td class="celda">Otto</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td class="celda">Mark</td>
+                        <td class="celda">Otto</td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+            <img src="d.png" alt="iteso">
+            <img src="d.png" alt="iteso">
+            <img src="d.png" alt="iteso">
+            <img src="d.png" alt="iteso">
+            <img src="d.png" alt="iteso">
+        </div>
+    </main>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e0497758cb.js" crossorigin="anonymous"></script>
+    <script src="/scripts/components.js"></script>
+    <script src="/scripts/user_profile/render_user_profile.js"></script>
+    <script src="/scripts/billing/render_billing.js"></script>
+    <script src="/scripts/render_controller.js"></script>
+</body>
+
+</html>

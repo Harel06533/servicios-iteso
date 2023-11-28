@@ -27,10 +27,6 @@ const bachelorSchema = new Schema({
             required: true,
             type: String,
           },
-          grade: {
-            required: true,
-            type: Number,
-          },
           eval_type: {
             required: true,
             type: String,

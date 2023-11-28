@@ -58,20 +58,32 @@ router.post("/change", async (req, res) => {
 router.post("/register", async (req, res) => {
   const { password, bachelor, semester } = req.body;
   try {
-    // get number of credits of the user and percent
+    // get number of credits of the user, percent and grade
     const { semesters, total_credits } = await BachelorModel.findOne(
       { name: bachelor },
       "semesters total_credits"
     );
     let userCurrentCredits = 0;
     const subjectsTaken = [];
+
     for (let sem = 0; sem < semester; sem++) {
       userCurrentCredits = semesters[sem].subjects.reduce(
         (acc, sub) => acc + sub.credits,
         0
       );
-      subjectsTaken.push(...semesters[sem].subjects);
+      const subjects = semesters[sem].subjects.map((sub) => {
+        return {
+          name: sub.name,
+          area: sub.area,
+          term: sub.term,
+          eval_type: sub.eval_type,
+          creadits: sub.credits,
+          grade: Math.floor(Math.random() * (10 - 6) + 6),
+        };
+      });
+      subjectsTaken.push(...subjects);
     }
+
     const userCreditsPercent = userCurrentCredits / total_credits;
     let grade =
       subjectsTaken.reduce((acc, sub) => acc + sub.grade, 0) /

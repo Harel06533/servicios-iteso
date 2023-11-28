@@ -20,6 +20,8 @@ const GET_FILTER = `
   bachelor
   semester
   num_of_credits
+  grade
+  subjects_taken
   credits_percent
   debts
 `;
@@ -41,7 +43,7 @@ router.get("/", async (req, res) => {
         student_email: data.student_email,
         full_name: data.full_name,
       },
-      GET_FILTER,
+      GET_FILTER
     );
     res.status(200).json({ user_data: doc });
   } catch (e) {

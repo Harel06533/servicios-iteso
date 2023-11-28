@@ -22,7 +22,6 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   const { name, semesters } = req.body;
   const bachelor = new Bachelor(name, semesters);
-  console.log(bachelor.toJSON());
   try {
     const modeled = BachelorModel(bachelor.toJSON());
     await modeled.save();

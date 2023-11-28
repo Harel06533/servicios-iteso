@@ -77,6 +77,32 @@ const userSchema = new Schema({
     type: Number,
   },
 
+  // subjects taken
+  subjects_taken: [
+    {
+      name: {
+        required: true,
+        type: String,
+      },
+      area: {
+        required: true,
+        type: String,
+      },
+      term: {
+        required: true,
+        type: String,
+      },
+      grade: {
+        required: true,
+        type: Number,
+      },
+      eval_type: {
+        required: true,
+        type: String,
+      },
+    },
+  ],
+
   // number of taken credits
   num_of_credits: {
     required: true,
@@ -85,6 +111,12 @@ const userSchema = new Schema({
 
   // percent of credits
   credits_percent: {
+    required: true,
+    type: Number,
+  },
+
+  // grade of the user
+  grade: {
     required: true,
     type: Number,
   },

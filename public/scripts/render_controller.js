@@ -18,6 +18,7 @@ async function getData() {
   // to select a section
   const avaliableSections = {
     toSchoolBill: () => createBillingSection(data.user_data),
+    toAcademicHistory: () => createAcademicSection(data.user_data),
   };
 
   // for moving in active sections

@@ -22,8 +22,10 @@ class User {
   #location; // Guadalajara, Jalisco, Mex
   #bachelor; // degree name
   #semester; // number of semester
+  #subjectsTaken; // subjects taken by the user
   #numOfCredits; // number of credits taken
   #creditsPercent; // percentage of approved credits
+  #grade; // grade
   #debts; // [ {"reason": 0.0} ] reason - amount
 
   // constructor (object)
@@ -37,8 +39,10 @@ class User {
     location,
     bachelor,
     semester,
+    subjectsTaken,
     numberOfCredits,
     creditsPercent,
+    grade,
     debts,
   }) {
     this.setFirstNames(firstNames);
@@ -54,6 +58,8 @@ class User {
     this.setSemester(semester);
     this.setNumberOfCredits(numberOfCredits);
     this.setCreditsPercent(creditsPercent);
+    this.setSubjectsTaken(subjectsTaken);
+    this.setGrade(grade);
     this.setDebts(debts);
   }
 
@@ -122,6 +128,10 @@ class User {
     this.#semester = semester;
   }
 
+  setSubjectsTaken(subjectsTaken) {
+    this.#subjectsTaken = subjectsTaken;
+  }
+
   setNumberOfCredits(numOfCredits) {
     if (!Number.isInteger(numOfCredits))
       throw new UserException("number of credits value must be an integer");
@@ -130,6 +140,10 @@ class User {
 
   setCreditsPercent(creditsPercent) {
     this.#creditsPercent = creditsPercent;
+  }
+
+  setGrade(grade) {
+    this.#grade = grade;
   }
 
   setDebts(debts) {
@@ -193,6 +207,14 @@ class User {
     return this.#debts;
   }
 
+  getSubjectsTaken() {
+    return this.#subjectsTaken;
+  }
+
+  getGrade() {
+    return this.#grade;
+  }
+
   // when JSON.stringify is called or need a fast object
   toJSON() {
     return {
@@ -209,6 +231,8 @@ class User {
       semester: this.getSemester(),
       num_of_credits: this.getNumberOfCredits(),
       credits_percent: this.getCreditsPercent(),
+      grade: this.getGrade(),
+      subjects_taken: this.getSubjectsTaken(),
       debts: this.getDebts(),
     };
   }

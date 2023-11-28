@@ -2,7 +2,6 @@
 
 // creates the user info card
 function createUserInfoCard(data) {
-  console.log(data);
   const dataSet = [
     ["tagNumber", "tag", { value: data.expedient, title: "Expediente" }], // tag number
     [
@@ -28,7 +27,7 @@ function createUserInfoCard(data) {
     "user-pic",
     "d-flex",
     "flex-column",
-    "align-items-center",
+    "align-items-center"
   );
   userImage.innerHTML = `
               <img
@@ -146,7 +145,11 @@ function createAcademicInformationCard(data) {
       "list-check",
       { value: "10 de marzo del 2024", title: "Inscripción de materias" },
     ], // personal email
-    ["average", "flag-checkered", { value: "9.2", title: "Promedio escolar" }], // location
+    [
+      "average",
+      "flag-checkered",
+      { value: data.grade, title: "Promedio escolar" },
+    ], // location
   ];
 
   const userListGroup = createListGroup(dataSet, [
@@ -186,7 +189,7 @@ function createAcademicInformationCard(data) {
   li.appendChild(progressbar);
   li.insertAdjacentHTML(
     "beforeend",
-    '<span class="fw-bold" style="color: #888; font-size: 0.7rem" aria-label="type">Creditos aprobados</span>',
+    '<span class="fw-bold" style="color: #888; font-size: 0.7rem" aria-label="type">Creditos aprobados</span>'
   );
   userListGroup.appendChild(li);
 

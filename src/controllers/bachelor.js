@@ -23,11 +23,12 @@ class Bachelor {
   }
 
   setTotalCredits() {
-    let sum = 0;
-    this.#semesters.forEach((semester) => {
-      sum += semester.credits;
+    this.#semesters.forEach((sem) => {
+      this.#totalCredits = sem.subjects.reduce(
+        (acc, sub) => acc + sub.credits,
+        0
+      );
     });
-    this.#totalCredits = sum;
   }
   // getters
   getName() {

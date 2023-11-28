@@ -13,10 +13,34 @@ const bachelorSchema = new Schema({
         required: true,
         type: Number,
       },
-      credits: {
-        required: true,
-        type: Number,
-      },
+      subjects: [
+        {
+          name: {
+            required: true,
+            type: String,
+          },
+          area: {
+            required: true,
+            type: String,
+          },
+          term: {
+            required: true,
+            type: String,
+          },
+          grade: {
+            required: true,
+            type: Number,
+          },
+          eval_type: {
+            required: true,
+            type: String,
+          },
+          credits: {
+            required: true,
+            type: Number,
+          },
+        },
+      ],
     },
   ],
   total_credits: {

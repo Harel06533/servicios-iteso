@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
   try {
     const doc = await UserModel.findOne(
       { student_email: email },
-      "password full_name student_email",
+      "password full_name student_email"
     );
     const isPassword = await bcrypt.compare(password, doc.password);
     if (!isPassword) throw new Error("Password is not correct");
@@ -45,7 +45,7 @@ router.post("/change", async (req, res) => {
         full_name: tokenData.full_name,
         student_email: tokenData.student_email,
       },
-      change,
+      change
     );
     res.status(201).send("Data changed");
   } catch (e) {
@@ -61,23 +61,32 @@ router.post("/register", async (req, res) => {
     // get number of credits of the user and percent
     const { semesters, total_credits } = await BachelorModel.findOne(
       { name: bachelor },
-      "semesters total_credits",
+      "semesters total_credits"
     );
     let userCurrentCredits = 0;
+    const subjectsTaken = [];
     for (let sem = 0; sem < semester; sem++) {
-      userCurrentCredits += semesters[sem].credits;
+      userCurrentCredits = semesters[sem].subjects.reduce(
+        (acc, sub) => acc + sub.credits,
+        0
+      );
+      subjectsTaken.push(...semesters[sem].subjects);
     }
     const userCreditsPercent = userCurrentCredits / total_credits;
+    let grade =
+      subjectsTaken.reduce((acc, sub) => acc + sub.grade, 0) /
+      subjectsTaken.length;
 
     // create a user object for validation and data ordering
     const requestBody = {
       ...req.body,
       numberOfCredits: userCurrentCredits,
       creditsPercent: userCreditsPercent,
+      subjectsTaken: subjectsTaken,
+      grade: grade,
     };
     const newUser = new User(requestBody);
     const userJson = newUser.toJSON();
-
     // set json password
     userJson["password"] = await encrypt(password);
     const modeled = UserModel(userJson);

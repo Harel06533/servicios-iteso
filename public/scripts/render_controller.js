@@ -12,7 +12,7 @@ async function getData() {
   const navButtons = Array.from(
     document
       .getElementById("sidebarAccordion")
-      .querySelectorAll(".btn-iteso-primary-100"),
+      .querySelectorAll(".btn-iteso-primary-100-sidebar"),
   );
 
   // to select a section
@@ -51,7 +51,7 @@ const content = document.querySelector(".content");
 const navButtons = Array.from(
   document
     .getElementById("sidebarAccordion")
-    .querySelectorAll(".btn-iteso-primary-100"),
+    .querySelectorAll(".btn-iteso-primary-100-sidebar"),
 );
 const userAccess = document
   .getElementById("user-menu")
@@ -67,6 +67,22 @@ function renderSection(section) {
 userAccess.addEventListener("click", (e) => {
   e.preventDefault();
   renderSection(createUserProfile());
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  const sidebarButtons = document.querySelectorAll('.btn-iteso-primary-100-sidebar');
+
+  sidebarButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      // Elimina la clase 'active' de todos los botones del sidebar
+      sidebarButtons.forEach(function (btn) {
+        btn.classList.remove('active');
+      });
+
+      // Agrega la clase 'active' al botón clicado
+      button.classList.add('active');
+    });
+  });
 });
 
 // render user profile by default

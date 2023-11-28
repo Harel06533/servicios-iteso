@@ -69,21 +69,30 @@ userAccess.addEventListener("click", (e) => {
   renderSection(createUserProfile());
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-  const sidebarButtons = document.querySelectorAll('.btn-iteso-primary-100-sidebar');
+  document.addEventListener('DOMContentLoaded', function () {
+    const sidebarButtons = document.querySelectorAll('.btn-iteso-primary-100-sidebar');
+    const userInfoButton = document.getElementById('user-menu');
 
-  sidebarButtons.forEach(function (button) {
-    button.addEventListener('click', function () {
+    sidebarButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        // Elimina la clase 'active' de todos los botones del sidebar
+        sidebarButtons.forEach(function (btn) {
+          btn.classList.remove('active');
+        });
+
+        // Agrega la clase 'active' al botón clicado
+        button.classList.add('active');
+      });
+    });
+
+    userInfoButton.addEventListener('click', function () {
       // Elimina la clase 'active' de todos los botones del sidebar
       sidebarButtons.forEach(function (btn) {
         btn.classList.remove('active');
       });
-
-      // Agrega la clase 'active' al botón clicado
-      button.classList.add('active');
     });
   });
-});
+
 
 // render user profile by default
 getData();

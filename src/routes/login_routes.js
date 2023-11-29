@@ -97,6 +97,7 @@ router.post("/register", async (req, res) => {
       subjectsTaken: subjectsTaken,
       grade: grade,
     };
+    requestBody.debts.sort((a, b) => a.amount - b.amount);
     const newUser = new User(requestBody);
     const userJson = newUser.toJSON();
     // set json password

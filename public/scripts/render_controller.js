@@ -12,7 +12,7 @@ async function getData() {
   const navButtons = Array.from(
     document
       .getElementById("sidebarAccordion")
-      .querySelectorAll(".btn-iteso-primary-100-sidebar"),
+      .querySelectorAll(".btn-iteso-primary-100-sidebar")
   );
 
   // to select a section
@@ -42,7 +42,18 @@ async function getData() {
       renderSection(createUserProfile(data.user_data));
     });
   // render userProfile by default
-  renderSection(createUserProfile(data.user_data));
+  const userProfile = createUserProfile(data.user_data);
+  userProfile.querySelectorAll("a").forEach((a) => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      const id = a.id;
+      if (avaliableSections[id]) {
+        const rendered = avaliableSections[id](data.user_data);
+        renderSection(rendered);
+      }
+    });
+  });
+  renderSection(userProfile);
 }
 
 // variables
@@ -51,7 +62,7 @@ const content = document.querySelector(".content");
 const navButtons = Array.from(
   document
     .getElementById("sidebarAccordion")
-    .querySelectorAll(".btn-iteso-primary-100-sidebar"),
+    .querySelectorAll(".btn-iteso-primary-100-sidebar")
 );
 const userAccess = document
   .getElementById("user-menu")
@@ -66,33 +77,34 @@ function renderSection(section) {
 // when user access is clicked, renders userProfile
 userAccess.addEventListener("click", (e) => {
   e.preventDefault();
-  renderSection(createUserProfile());
+  getData();
 });
 
-  document.addEventListener('DOMContentLoaded', function () {
-    const sidebarButtons = document.querySelectorAll('.btn-iteso-primary-100-sidebar');
-    const userInfoButton = document.getElementById('user-menu');
+document.addEventListener("DOMContentLoaded", function () {
+  const sidebarButtons = document.querySelectorAll(
+    ".btn-iteso-primary-100-sidebar"
+  );
+  const userInfoButton = document.getElementById("user-menu");
 
-    sidebarButtons.forEach(function (button) {
-      button.addEventListener('click', function () {
-        // Elimina la clase 'active' de todos los botones del sidebar
-        sidebarButtons.forEach(function (btn) {
-          btn.classList.remove('active');
-        });
-
-        // Agrega la clase 'active' al botón clicado
-        button.classList.add('active');
-      });
-    });
-
-    userInfoButton.addEventListener('click', function () {
+  sidebarButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
       // Elimina la clase 'active' de todos los botones del sidebar
       sidebarButtons.forEach(function (btn) {
-        btn.classList.remove('active');
+        btn.classList.remove("active");
       });
+
+      // Agrega la clase 'active' al botón clicado
+      button.classList.add("active");
     });
   });
 
+  userInfoButton.addEventListener("click", function () {
+    // Elimina la clase 'active' de todos los botones del sidebar
+    sidebarButtons.forEach(function (btn) {
+      btn.classList.remove("active");
+    });
+  });
+});
 
 // render user profile by default
 getData();

@@ -6,17 +6,25 @@ import UserModel from "../models/userModel";
 const router = Router();
 
 // for now, it just removes all debt (this should not be the functionality of course)
-router.post("/", async (req, res) => {
-  const payment = req.body;
+router.put("/", async (req, res) => {
+  let { amount } = req.body;
   const token = req.headers["token"];
   try {
-    if (payment instanceof Array === false)
-      throw new Error("body must be an array");
     const { full_name, student_email } = validateAccessToken(token).data;
-    await UserModel.findOneAndUpdate(
-      { full_name: full_name, student_email: student_email },
-      { debts: [] },
-    );
+    const doc = await UserModel.findOne({
+      full_name: full_name,
+      student_email: student_email,
+    });
+    while (amount > 0) {
+      if (amount - doc.debts[0].amount >= 0) {
+        amount -= doc.debts[0].amount;
+        doc.debts.splice(0, 1);
+      } else {
+        doc.debts[0].amount -= amount;
+        break;
+      }
+    }
+    await doc.save();
     res.sendStatus(201);
   } catch (e) {
     console.error(e);

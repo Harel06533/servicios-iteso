@@ -148,7 +148,7 @@ function createAcademicInformationCard(data) {
     [
       "average",
       "flag-checkered",
-      { value: data.grade, title: "Promedio escolar" },
+      { value: data.grade.toFixed(1), title: "Promedio escolar" },
     ], // location
   ];
 
@@ -158,9 +158,9 @@ function createAcademicInformationCard(data) {
   ]);
   const listItems = Array.from(userListGroup.children);
   const linkOptions = [
-    "Ir a colegiaturas",
-    "Ir a ficha de inscripción",
-    "Ir a historia académica",
+    { name: "toSchoolBill", title: "Ir a colegiaturas" },
+    { name: "toInscription", title: "Ir a ficha de inscripción" },
+    { name: "toAcademicHistory", title: "Ir a historia académica" },
   ];
 
   // wrap every inner data from the li into a div
@@ -176,7 +176,8 @@ function createAcademicInformationCard(data) {
     li.firstElementChild.insertAdjacentHTML("afterbegin", inner);
     const link = document.createElement("a");
     link.href = "#";
-    link.textContent = linkOptions[index];
+    link.id = linkOptions[index].name;
+    link.textContent = linkOptions[index].title;
     index++;
     li.appendChild(link);
   });

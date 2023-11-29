@@ -4,7 +4,7 @@
 class Bachelor {
   #name;
   #semesters;
-  #totalCredits;
+  #totalCredits = 0;
 
   // constructor
   constructor(name, semesters) {
@@ -24,7 +24,7 @@ class Bachelor {
 
   setTotalCredits() {
     this.#semesters.forEach((sem) => {
-      this.#totalCredits = sem.subjects.reduce(
+      this.#totalCredits += sem.subjects.reduce(
         (acc, sub) => acc + sub.credits,
         0
       );

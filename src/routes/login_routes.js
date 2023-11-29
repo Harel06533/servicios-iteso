@@ -67,7 +67,7 @@ router.post("/register", async (req, res) => {
     const subjectsTaken = [];
 
     for (let sem = 0; sem < semester; sem++) {
-      userCurrentCredits = semesters[sem].subjects.reduce(
+      userCurrentCredits += semesters[sem].subjects.reduce(
         (acc, sub) => acc + sub.credits,
         0
       );

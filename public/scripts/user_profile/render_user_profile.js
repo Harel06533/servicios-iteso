@@ -85,9 +85,8 @@ function createPersonalDataCard(data) {
         const id = li.id;
         changeModal.querySelector(".modal-title").textContent = title;
         changeModal.querySelector("input").value = "";
-        changeModal
-          .querySelector(".btn-iteso-secondary")
-          .addEventListener("click", async () => {
+        changeModal.querySelector(".btn-iteso-secondary").onclick =
+          async () => {
             const newData = changeModal.querySelector("input").value;
             if (newData) {
               try {
@@ -106,7 +105,7 @@ function createPersonalDataCard(data) {
                 alert("No se ha podido cambiar el dato, error: " + e.message);
               }
             }
-          });
+          };
         const bsModal = new bootstrap.Modal(changeModal, {});
         bsModal.show();
       };
